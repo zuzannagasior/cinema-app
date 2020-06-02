@@ -16,7 +16,7 @@ const Header = () => {
   `;
 
   return (
-    <HeaderCont>
+    <HeaderCont id="header">
           <Clapperboard src={clapperboard} padding={paddingLeft} alt="clapperboard-icon"/>
           <Clapperboard src={clapperboard} padding={paddingLeft} alt="clapperboard-icon"/>
           <Clapperboard src={clapperboard} padding={paddingLeft} alt="clapperboard-icon"/>

@@ -16,7 +16,8 @@ export const Main = styled.main`
     flex-grow: 1;
     padding: 16px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 `;
 
 // Header
@@ -51,6 +52,34 @@ export const Subtitle = styled.p`
     font-size: 24px;
 `;
 
+// Calendar
+
+export const CalendarCont = styled.section`
+    width: 80%;
+    padding: 16px 32px;
+    background-color: #1D1D20;
+    display: flex;
+    justify-content: space-around;
+    position: ${props => props.fixed ? "sticky" : "block"};
+    top: 0;
+`;
+
+export const DateButton = styled.button`
+    background-color: transparent;
+    border: none;
+    color:  ${props => props.active ? "#3797a4" : "#DFDFE2"};
+    text-transform: uppercase;
+    padding: 16px;
+    transition: .2s;
+    &:hover {
+        color: #3797a4;
+        cursor: pointer;
+    }
+    &:focus {
+        outline: none;
+    }
+`;
+
 // Movie List
 
 export const MovieListCont = styled.div`
@@ -58,6 +87,30 @@ export const MovieListCont = styled.div`
     justify-content: space-around;
     flex-wrap: wrap;
     width: 80%;
+`;
+
+// Movie Item
+
+export const MovieItemCont = styled.div`
+    padding: 32px;
+    max-width: 50%;
+`;
+
+export const MovieItemBox = styled.div`
+    width: 100%;
+    display: flex;
+    padding-top: 16px;
+    margin-bottom: 16px;
+`;
+
+export const PosterImg = styled.img`
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+`;
+
+export const LighterText = styled.span`
+    font-weight: 300;
 `;
 
 // Footer

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import MovieItem from '../components/MovieItem.js';
 import { MovieListCont } from '../../StyledComponents';
+import CalendarSection from '../CalendarSection';
 
 const MovieList = () => {
 
@@ -70,12 +71,15 @@ const MovieList = () => {
   //     return result;
   // }
   return (
-    <MovieListCont>
-      <MovieItem />
-      <MovieItem />
-      <MovieItem />
-      <MovieItem />
-    </MovieListCont>
+    <>
+      <CalendarSection />
+      <MovieListCont>
+        <MovieItem />
+        <MovieItem />
+        <MovieItem />
+        <MovieItem />
+      </MovieListCont>
+    </>
   );
 }
 
