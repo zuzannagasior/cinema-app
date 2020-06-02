@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import pulp from '../../assets/pulp.jpg';
-import { MovieItemCont, MovieItemBox, PosterImg, LighterText } from '../../StyledComponents';
+import { Link } from 'react-router-dom';
+import { MovieItemCont, MovieItemBox, PosterImg, LighterText, CustomLink } from '../../StyledComponents';
 
 const MovieItem = () => {
 
@@ -44,7 +45,17 @@ const MovieItem = () => {
                 <p>Przemoc i odkupienie w opowieści o dwóch płatnych mordercach pracujących na zlecenie mafii, żonie gangstera, bokserze i parze okradającej ludzi w restauracji.</p>
             </section>
         </MovieItemBox>
-        <p><LighterText>Godziny seansów</LighterText> <span style={{color: "#3797a4"}}>14:50 15:20</span></p>
+        <p><LighterText>Godziny seansów</LighterText> 
+            <Link to="/hall/gold-diamond" css={css`text-decoration: none;`}>
+                    <CustomLink active={false}>14:50</CustomLink>
+            </Link>
+            <Link to="/hall/gold-diamond" css={css`text-decoration: none;`}>
+                   <CustomLink active={true}>15:40</CustomLink>
+            </Link>
+            <Link to="/hall/gold-diamond" css={css`text-decoration: none;`}>
+                   <CustomLink active={true}>20:00</CustomLink>
+            </Link>
+        </p>
     </MovieItemCont>
   );
 }

@@ -113,6 +113,15 @@ export const LighterText = styled.span`
     font-weight: 300;
 `;
 
+export const CustomLink = styled.span`
+    color: ${props => props.active ? "#3797a4" : "#747474"};
+    margin-left: 8px;
+    transition: .2s;
+    &:hover {
+        color: ${props => props.active ? "#DFDFE2" : "#747474"};
+    }
+`;
+
 // Footer
 
 export const FooterCont = styled.footer`

@@ -15,7 +15,7 @@ const App = () => {
       <Main>
         <BrowserRouter>
           <Route path="/" exact component={MovieList} />
-          <Route path="/hall" component={CinemaHall} />
+          <Route path="/hall/:hall-type" component={CinemaHall} />
         </BrowserRouter>
       </Main>
       <Footer />
