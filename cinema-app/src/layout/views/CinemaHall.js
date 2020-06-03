@@ -1,23 +1,71 @@
-import React from 'react';
-import emptyChair from '../../assets/emptychair.png';
-import taken2 from '../../assets/taken2.png';
-import yourchair from '../../assets/yourchair.png';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
+import { HallConteiner, Seat, CustomButton } from '../../StyledComponents';
+import Summary from '../components/Summary.js';
+import { Link } from 'react-router-dom';
 
-const CinemaHall = () => {
+const CinemaHall = ({match}) => {
+  console.log('match', match);
+
   return (
-    <div>
-        <img style={{width: "80px", height: "auto", paddingLeft: "24px"}} src={emptyChair} alt="" />
-        <img style={{width: "80px", height: "auto", paddingLeft: "24px"}} src={emptyChair} alt="" />
-        <img style={{width: "80px", height: "auto", paddingLeft: "24px"}} src={emptyChair} alt="" />
-        <img style={{width: "80px", height: "auto", paddingLeft: "24px"}} src={taken2} alt="" />
-        <img style={{width: "80px", height: "auto", paddingLeft: "24px"}} src={emptyChair} alt="" />
-        <img style={{width: "80px", height: "auto", paddingLeft: "24px"}} src={taken2} alt="" />
-        <img style={{width: "80px", height: "auto", paddingLeft: "24px"}} src={taken2} alt="" />
-        <img style={{width: "80px", height: "auto", paddingLeft: "24px"}} src={emptyChair} alt="" />
-        <img style={{width: "80px", height: "auto", paddingLeft: "24px"}} src={emptyChair} alt="" />
-        <img style={{width: "80px", height: "auto", paddingLeft: "24px"}} src={taken2} alt="" />
-        <img style={{width: "80px", height: "auto", paddingLeft: "24px"}} src={yourchair} alt="" />
-    </div>
+    <HallConteiner>
+        <h1>Pulp Fiction (1994)</h1>
+        <h2>GOLD DIAMOND HALL</h2>
+        <div css={css`padding-top: 16px; display: flex; flex-direction: column; margin-bottom: 32px;`}>
+          <div css={css`display: flex; padding-top: 16px;`}>
+            <Seat />
+            <Seat />
+            <Seat className="taken"></Seat>
+            <Seat />
+            <Seat />
+            <Seat />
+            <Seat />
+            <Seat />
+            <Seat />
+            <Seat />
+            <Seat />
+            <Seat />
+            <Seat />
+          </div>
+          <div css={css`display: flex; padding-top: 16px;`}>
+            <Seat></Seat>
+            <Seat />
+            <Seat className="taken"></Seat>
+            <Seat />
+            <Seat />
+            <Seat />
+            <Seat />
+            <Seat />
+            <Seat className="taken" />
+            <Seat className="taken" />
+            <Seat />
+            <Seat />
+            <Seat />
+          </div>
+          <div css={css`display: flex; padding-top: 16px;`}>
+            <Seat></Seat>
+            <Seat />
+            <Seat />
+            <Seat className="taken" />
+            <Seat />
+            <Seat />
+            <Seat />
+            <Seat />
+            <Seat />
+            <Seat />
+            <Seat />
+            <Seat />
+            <Seat />
+          </div>
+        </div>
+        <Summary />
+        <div css={css`transform: translateX(-25%);`}>
+          <Link to="/">
+              <CustomButton className="secondary">Return</CustomButton>
+          </Link>
+          <CustomButton>Book</CustomButton>
+        </div>
+    </HallConteiner>
   );
 }
 

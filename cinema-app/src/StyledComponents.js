@@ -1,6 +1,9 @@
 /** @jsx jsx */
 import styled from '@emotion/styled';
-
+import emptyChair from './assets/emptychair.png';
+import taken from './assets/taken2.png';
+import chosen from './assets/yourchair.png';
+import Select from 'react-select';
 
 // Main
 
@@ -13,6 +16,7 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.main`
+    width: 100%;
     flex-grow: 1;
     padding: 16px;
     display: flex;
@@ -122,10 +126,83 @@ export const CustomLink = styled.span`
     }
 `;
 
+// Cinema Hall
+
+export const HallConteiner = styled.div`
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 32px;
+`;
+
+export const Seat = styled.div`
+    width: 25px;
+    height: 25px;
+    background: url(${emptyChair}) no-repeat center center;
+    background-size: cover;
+    margin-left: 24px;
+    cursor: pointer;
+    &:first-child {
+     margin-left: 0;
+    }
+    &:hover {
+     background: url(${chosen}) no-repeat center center;
+     background-size: cover;
+    }
+    &.taken {
+     background: url(${taken}) no-repeat center center;
+     background-size: cover;
+     cursor: default;
+     /* &:hover {
+     background: url(${taken}) no-repeat center center cover;
+    } */
+    }
+    &.chosen {
+     background: url(${chosen}) no-repeat center center;
+     background-size: cover;
+    }
+`;
+
 // Footer
 
 export const FooterCont = styled.footer`
     width: 100%;
     text-align: center; 
     padding: 16px;
+`;
+
+// buttons
+
+export const CustomButton = styled.button`
+    background-color: transparent;
+    border: 1.5px solid #3797a4;
+    min-width: 100px;
+    padding: 8px;
+    color: #DFDFE2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    transition: .2s;
+    cursor: pointer;
+    &:hover {
+        background-color: #3797a4;
+    }
+    &:focus {
+        outline: none;
+        background-color: #3797a4;
+    }
+    &.secondary {
+        border: none;
+        font-weight: 300;
+        &:hover {
+            background-color: transparent;
+            text-decoration: underline;
+        }
+        &:focus {
+            background-color: transparent;
+            text-decoration: underline;
+        }
+    }
 `;

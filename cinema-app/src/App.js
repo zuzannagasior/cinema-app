@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import {  BrowserRouter, Route } from 'react-router-dom';
 
 import MovieList from './layout/views/MovieList.js';
 import CinemaHall from './layout/views/CinemaHall';
@@ -13,9 +13,9 @@ const App = () => {
     <Container>
       <Header />
       <Main>
-        <BrowserRouter>
-          <Route path="/" exact component={MovieList} />
-          <Route path="/hall/:hall-type" component={CinemaHall} />
+        <BrowserRouter>    
+          <Route path="/" exact component={MovieList} />     
+          <Route path="/hall/:type" component={CinemaHall} />
         </BrowserRouter>
       </Main>
       <Footer />
