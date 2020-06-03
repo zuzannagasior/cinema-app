@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import emptyChair from './assets/emptychair.png';
 import taken from './assets/taken2.png';
 import chosen from './assets/yourchair.png';
-import Select from 'react-select';
 
 // Main
 

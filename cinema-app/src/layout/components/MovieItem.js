@@ -3,9 +3,24 @@ import { css, jsx } from '@emotion/core';
 import pulp from '../../assets/pulp.jpg';
 import { Link } from 'react-router-dom';
 import { MovieItemCont, MovieItemBox, PosterImg, LighterText, CustomLink } from '../../StyledComponents';
+import { useContext } from 'react';
+import {ReduxStoreContext, ACTIONS} from '../../Reducer.js'
+
 
 const MovieItem = () => {
+    const {state, dispatch} = useContext(ReduxStoreContext);
 
+    const handleClick = (event) => {
+
+        const payload = {
+            title: "Pulp Fiction (1994)",
+            hall: "GOLD DIAMOND HALL",
+            hour: event.target.innerHTML
+        }
+        dispatch({ 
+            type: ACTIONS.SET_CHOSEN_MOVIE, 
+            payload: payload });
+    };
 
     // styles
     const headerBoxStyle = css`
@@ -47,13 +62,13 @@ const MovieItem = () => {
         </MovieItemBox>
         <p><LighterText>Godziny seansów</LighterText> 
             <Link to="/hall/gold-diamond" css={css`text-decoration: none;`}>
-                    <CustomLink active={false}>14:50</CustomLink>
+                    <CustomLink active={false} onClick={handleClick}>14:50</CustomLink>
             </Link>
             <Link to="/hall/gold-diamond" css={css`text-decoration: none;`}>
-                   <CustomLink active={true}>15:40</CustomLink>
+                   <CustomLink active={true} onClick={handleClick}>15:40</CustomLink>
             </Link>
             <Link to="/hall/gold-diamond" css={css`text-decoration: none;`}>
-                   <CustomLink active={true}>20:00</CustomLink>
+                   <CustomLink active={true} onClick={handleClick}>20:00</CustomLink>
             </Link>
         </p>
     </MovieItemCont>
