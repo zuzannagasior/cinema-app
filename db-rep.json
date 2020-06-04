@@ -3,6 +3,7 @@
     "movies": [
         {
             "title": "Pulp Fiction",
+            "imdb_id": "tt0110912",
             "screening": [
                     {"time": "10:10", "hall": "gold-diamond"},
                     {"time": "12:30", "hall": "gold-diamond"}
@@ -10,6 +11,7 @@
         },
         {
             "title": "Portrait of a Lady on Fire",
+            "imdb_id": "tt8613070",
             "screening": [
                     {"time": "13:10", "hall": "gold-diamond"},
                     {"time": "18:30", "hall": "gold-diamond"}
@@ -17,6 +19,7 @@
         },
         {
             "title": "Room",
+            "imdb_id": "tt3170832",
             "screening": [
                     {"time": "18:10", "hall": "gold-diamond"},
                     {"time": "20:30", "hall": "gold-diamond"}
@@ -24,6 +27,7 @@
         },
         {
             "title": "Isle of dogs",
+            "imdb_id": "tt5104604",
             "screening": [
                     {"time": "19:10", "hall": "gold-diamond"},
                     {"time": "22:30", "hall": "gold-diamond"}
@@ -36,6 +40,7 @@
     "movies": [
         {
             "title": "Pulp Fiction",
+            "imdb_id": "tt0110912",
             "screening": [
                     {"time": "10:10", "hall": "gold-diamond"},
                     {"time": "12:30", "hall": "gold-diamond"}
@@ -48,6 +53,7 @@
     "movies": [
         {
             "title": "Pulp Fiction",
+            "imdb_id": "tt0110912",
             "screening": [
                     {"time": "10:10", "hall": "gold-diamond"},
                     {"time": "12:30", "hall": "gold-diamond"}
@@ -60,6 +66,7 @@
     "movies": [
         {
             "title": "Pulp Fiction",
+            "imdb_id": "tt0110912",
             "screening": [
                     {"time": "10:10", "hall": "gold-diamond"},
                     {"time": "12:30", "hall": "gold-diamond"}
@@ -72,6 +79,7 @@
     "movies": [
         {
             "title": "Pulp Fiction",
+            "imdb_id": "tt0110912",
             "screening": [
                     {"time": "10:10", "hall": "gold-diamond"},
                     {"time": "12:30", "hall": "gold-diamond"}
@@ -84,6 +92,7 @@
     "movies": [
         {
             "title": "Pulp Fiction",
+            "imdb_id": "tt0110912",
             "screening": [
                     {"time": "10:10", "hall": "gold-diamond"},
                     {"time": "12:30", "hall": "gold-diamond"}
@@ -96,6 +105,7 @@
     "movies": [
         {
             "title": "Pulp Fiction",
+            "imdb_id": "tt0110912",
             "screening": [
                     {"time": "10:10", "hall": "gold-diamond"},
                     {"time": "12:30", "hall": "gold-diamond"}

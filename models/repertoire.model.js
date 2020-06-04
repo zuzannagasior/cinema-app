@@ -16,6 +16,7 @@ const screeningSchema = new Schema({
 
 const moviesSchema = new Schema({ 
     title: String, 
+    imdb_id: String, 
     screening: [screeningSchema] 
 });
 

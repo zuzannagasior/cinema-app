@@ -83,13 +83,6 @@ const MovieList = () => {
     axios.get('/repertoire/monday')
     .then(response => {
       console.log(response, 'response 2');
-    })
-    .catch(function(error) {
-        console.log(error);
-    });
-
-    axios.get('/movies')
-    .then(response => {
       dispatch({ 
         type: ACTIONS.SET_MOVIES, 
         payload: response.data });
@@ -98,12 +91,22 @@ const MovieList = () => {
         console.log(error);
     });
 
+    // axios.get('/movies')
+    // .then(response => {
+    //   dispatch({ 
+    //     type: ACTIONS.SET_MOVIES, 
+    //     payload: response.data });
+    // })
+    // .catch(function(error) {
+    //     console.log(error);
+    // });
+
 
   }, []);
 
 
-  const movieList = movies.map((movie) => {
-    return <MovieItem key={movie._id} movie={movie} />
+  const movieList = movies.map((movie, id) => {
+    return <MovieItem key={id} movie={movie} />
   })
 
 

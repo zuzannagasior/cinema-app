@@ -53,14 +53,14 @@ const MovieItem = ({ movie }) => {
                 <PosterImg src={movie.poster} alt=""/>
             </section>
             <section css={infoSectionStyle}>
-                <p><LighterText>czas trwania</LighterText> {movie.runtime} min</p>
-                <p><LighterText>gatunek</LighterText> {movie.genre}</p>
-                <p><LighterText>reżyseria</LighterText> {movie.directior}</p>
-                <p css={sectionSeparator}><LighterText>produkcja</LighterText> {movie.country}</p>
+                <p><LighterText>runtime</LighterText> {movie.runtime} min</p>
+                <p><LighterText>genres</LighterText> {movie.genre.join(', ')}</p>
+                {/* <p><LighterText>reżyseria</LighterText> {movie.directior}</p> */}
+                <p css={sectionSeparator}><LighterText>production</LighterText> {movie.countries.join(', ')}</p>
                 <p>{movie.description}</p>
             </section>
         </MovieItemBox>
-        <p><LighterText>Godziny seansów</LighterText> 
+        <p><LighterText>Screening</LighterText> 
             <Link to="/hall/gold-diamond" css={css`text-decoration: none;`}>
                     <CustomLink active={false} onClick={handleClick}>14:50</CustomLink>
             </Link>
