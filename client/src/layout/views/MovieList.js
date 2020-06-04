@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useEffect, useContext} from 'react';
 import axios from 'axios';
-import MovieItem from '../components/MovieItem.js';
+import MovieItem from '../components/MovieItem.js'
+import {ReduxStoreContext, ACTIONS} from '../../Reducer.js'
 import { MovieListCont } from '../../StyledComponents';
 import CalendarSection from '../CalendarSection';
+import Loading from '../components/Loading';
 
 const MovieList = () => {
+  const {state, dispatch} = useContext(ReduxStoreContext);
+
+  const { movies } = state;
+  const loading = Object.keys(movies).length === 0;
+
 
   //   const getMovies = async () => {
   //     let result = [];
@@ -70,14 +77,45 @@ const MovieList = () => {
   
   //     return result;
   // }
+
+  useEffect(() => {
+
+    axios.get('/repertoire/monday')
+    .then(response => {
+      console.log(response, 'response 2');
+    })
+    .catch(function(error) {
+        console.log(error);
+    });
+
+    axios.get('/movies')
+    .then(response => {
+      dispatch({ 
+        type: ACTIONS.SET_MOVIES, 
+        payload: response.data });
+    })
+    .catch(function(error) {
+        console.log(error);
+    });
+
+
+  }, []);
+
+
+  const movieList = movies.map((movie) => {
+    return <MovieItem key={movie._id} movie={movie} />
+  })
+
+
   return (
     <>
       <CalendarSection />
       <MovieListCont>
-        <MovieItem />
-        <MovieItem />
-        <MovieItem />
-        <MovieItem />
+        {loading 
+          ? 
+        <Loading />
+          : 
+        <>{movieList}</>}
       </MovieListCont>
     </>
   );

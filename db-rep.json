@@ -1,0 +1,105 @@
+{
+    "day": "monday",
+    "movies": [
+        {
+            "title": "Pulp Fiction",
+            "screening": [
+                    {"time": "10:10", "hall": "gold-diamond"},
+                    {"time": "12:30", "hall": "gold-diamond"}
+                        ]
+        },
+        {
+            "title": "Portrait of a Lady on Fire",
+            "screening": [
+                    {"time": "13:10", "hall": "gold-diamond"},
+                    {"time": "18:30", "hall": "gold-diamond"}
+                        ]
+        },
+        {
+            "title": "Room",
+            "screening": [
+                    {"time": "18:10", "hall": "gold-diamond"},
+                    {"time": "20:30", "hall": "gold-diamond"}
+                        ]
+        },
+        {
+            "title": "Isle of dogs",
+            "screening": [
+                    {"time": "19:10", "hall": "gold-diamond"},
+                    {"time": "22:30", "hall": "gold-diamond"}
+                        ]
+        }
+                ]
+}
+{
+    "day": "tuesday",
+    "movies": [
+        {
+            "title": "Pulp Fiction",
+            "screening": [
+                    {"time": "10:10", "hall": "gold-diamond"},
+                    {"time": "12:30", "hall": "gold-diamond"}
+                        ]
+        }
+                ]
+}
+{
+    "day": "wednesday",
+    "movies": [
+        {
+            "title": "Pulp Fiction",
+            "screening": [
+                    {"time": "10:10", "hall": "gold-diamond"},
+                    {"time": "12:30", "hall": "gold-diamond"}
+                        ]
+        }
+                ]
+}
+{
+    "day": "thursday",
+    "movies": [
+        {
+            "title": "Pulp Fiction",
+            "screening": [
+                    {"time": "10:10", "hall": "gold-diamond"},
+                    {"time": "12:30", "hall": "gold-diamond"}
+                        ]
+        }
+                ]
+}
+{
+    "day": "friday",
+    "movies": [
+        {
+            "title": "Pulp Fiction",
+            "screening": [
+                    {"time": "10:10", "hall": "gold-diamond"},
+                    {"time": "12:30", "hall": "gold-diamond"}
+                        ]
+        }
+                ]
+}
+{
+    "day": "saturday",
+    "movies": [
+        {
+            "title": "Pulp Fiction",
+            "screening": [
+                    {"time": "10:10", "hall": "gold-diamond"},
+                    {"time": "12:30", "hall": "gold-diamond"}
+                        ]
+        }
+                ]
+}
+{
+    "day": "sunday",
+    "movies": [
+        {
+            "title": "Pulp Fiction",
+            "screening": [
+                    {"time": "10:10", "hall": "gold-diamond"},
+                    {"time": "12:30", "hall": "gold-diamond"}
+                        ]
+        }
+                ]
+}

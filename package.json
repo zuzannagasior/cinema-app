@@ -1,0 +1,29 @@
+{
+  "name": "cinema-app",
+  "version": "1.0.0",
+  "description": "cinema app backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "12.13.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zuzannagasior/cinema-app.git"
+  },
+  "author": "Zuzanna Gąsior",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zuzannagasior/cinema-app/issues"
+  },
+  "homepage": "https://github.com/zuzannagasior/cinema-app#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.17"
+  }
+}

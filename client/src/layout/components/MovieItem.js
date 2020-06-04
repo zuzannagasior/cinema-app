@@ -1,19 +1,19 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
-import pulp from '../../assets/pulp.jpg';
 import { Link } from 'react-router-dom';
 import { MovieItemCont, MovieItemBox, PosterImg, LighterText, CustomLink } from '../../StyledComponents';
 import { useContext } from 'react';
 import {ReduxStoreContext, ACTIONS} from '../../Reducer.js'
 
 
-const MovieItem = () => {
+const MovieItem = ({ movie }) => {
     const {state, dispatch} = useContext(ReduxStoreContext);
 
+    console.log(movie, 'movie');
     const handleClick = (event) => {
 
         const payload = {
-            title: "Pulp Fiction (1994)",
+            title: movie.title,
             hall: "GOLD DIAMOND HALL",
             hour: event.target.innerHTML
         }
@@ -46,18 +46,18 @@ const MovieItem = () => {
   return (
     <MovieItemCont>
         <header css={headerBoxStyle}>
-            <h1 style={{color: "#3797a4"}}>Pulp Fiction (1994)</h1>
+            <h1 style={{color: "#3797a4"}}>{movie.title} ({movie.year})</h1>
         </header>
         <MovieItemBox>
             <section css={posterSectionStyle}>
-                <PosterImg src={pulp} alt=""/>
+                <PosterImg src={movie.poster} alt=""/>
             </section>
             <section css={infoSectionStyle}>
-                <p><LighterText>czas trwania</LighterText> 146 min</p>
-                <p><LighterText>gatunek</LighterText> Gangsterski</p>
-                <p><LighterText>reżyseria</LighterText> Quentin Tarantino</p>
-                <p css={sectionSeparator}><LighterText>produkcja</LighterText> USA</p>
-                <p>Przemoc i odkupienie w opowieści o dwóch płatnych mordercach pracujących na zlecenie mafii, żonie gangstera, bokserze i parze okradającej ludzi w restauracji.</p>
+                <p><LighterText>czas trwania</LighterText> {movie.runtime} min</p>
+                <p><LighterText>gatunek</LighterText> {movie.genre}</p>
+                <p><LighterText>reżyseria</LighterText> {movie.directior}</p>
+                <p css={sectionSeparator}><LighterText>produkcja</LighterText> {movie.country}</p>
+                <p>{movie.description}</p>
             </section>
         </MovieItemBox>
         <p><LighterText>Godziny seansów</LighterText> 
