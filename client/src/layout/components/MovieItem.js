@@ -22,6 +22,22 @@ const MovieItem = ({ movie }) => {
             payload: payload });
     };
 
+    const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+
+    const isLinkActive = ({ time }) => {
+        let active = true;
+        console.log(state.chosenDay, 'state.chosenDay');
+        if (state.chosenDay === days[(new Date).getDay() - 1]) {
+            let date = new Date();
+            date.setHours(time.slice(0, 2), time.slice(3), '00');
+            if (date.getTime() < new Date().getTime()) {
+                active = false;
+            }
+        }
+
+        return active;
+    };
+
     // styles
     const headerBoxStyle = css`
         width: 100%;
@@ -62,9 +78,14 @@ const MovieItem = ({ movie }) => {
         </MovieItemBox>
         <p><LighterText>Screening</LighterText> 
             {movie.screening.map((item, index) => {
-                return <Link to={"/hall/" + item.hall} css={css`text-decoration: none;`} key={index}>
-                            <CustomLink active={false} onClick={handleClick}>{item.time}</CustomLink>
-                        </Link>
+                const isActive = isLinkActive(item);
+                if (isActive) {
+                    return <Link to={"/hall/" + item.hall} css={css`text-decoration: none;`} key={index}>
+                                <CustomLink active={isActive} onClick={handleClick}>{item.time}</CustomLink>
+                            </Link>
+                } else {
+                    return <CustomLink active={isActive}>{item.time}</CustomLink>
+                }
             })}
         </p>
     </MovieItemCont>
