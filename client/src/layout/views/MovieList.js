@@ -9,104 +9,31 @@ import Loading from '../components/Loading';
 const MovieList = () => {
   const {state, dispatch} = useContext(ReduxStoreContext);
 
-  const { movies } = state;
-  const loading = Object.keys(movies).length === 0;
-
-
-  //   const getMovies = async () => {
-  //     let result = [];
-  //     console.log('jestem')
-  //     await axios.get('http://www.omdbapi.com/?apikey=788bb0a9&t=Love+Actually')
-  //     .then(response => {
-  //       console.log(response, 'response');
-  //       result.push(response.data);
-  //     })
-  //     .catch(function(error) {
-  //         console.log(error);
-  //     }) 
-  
-  //     await axios.get('http://www.omdbapi.com/?apikey=788bb0a9&t=Pulp+Fiction')
-  //     .then(response => {
-  //       console.log(response, 'response');
-  //       result.push(response.data);
-  //     })
-  //     .catch(function(error) {
-  //         console.log(error);
-  //     }) 
-  
-  //     await axios.get('http://www.omdbapi.com/?apikey=788bb0a9&t=Parasite')
-  //     .then(response => {
-  //       console.log(response, 'response');
-  //       result.push(response.data);
-  //     })
-  //     .catch(function(error) {
-  //         console.log(error);
-  //     }) 
-  
-  //     return result;
-  // }
-  //   const getMovies = async () => {
-  //     let result = [];
-  //     console.log('jestem')
-  //     await axios.get('http://www.omdbapi.com/?apikey=788bb0a9&t=Love+Actually')
-  //     .then(response => {
-  //       console.log(response, 'response');
-  //       result.push(response.data);
-  //     })
-  //     .catch(function(error) {
-  //         console.log(error);
-  //     }) 
-  
-  //     await axios.get('http://www.omdbapi.com/?apikey=788bb0a9&t=Pulp+Fiction')
-  //     .then(response => {
-  //       console.log(response, 'response');
-  //       result.push(response.data);
-  //     })
-  //     .catch(function(error) {
-  //         console.log(error);
-  //     }) 
-  
-  //     await axios.get('http://www.omdbapi.com/?apikey=788bb0a9&t=Parasite')
-  //     .then(response => {
-  //       console.log(response, 'response');
-  //       result.push(response.data);
-  //     })
-  //     .catch(function(error) {
-  //         console.log(error);
-  //     }) 
-  
-  //     return result;
-  // }
+  const { movies, chosenDay, loading } = state;
 
   useEffect(() => {
+    dispatch({ 
+      type: ACTIONS.TOGGLE_LOADING, 
+      payload: true });
 
-    axios.get('/repertoire/monday')
+    axios.get(`/repertoire/${chosenDay}`)
     .then(response => {
       console.log(response, 'response 2');
       dispatch({ 
         type: ACTIONS.SET_MOVIES, 
         payload: response.data });
+      dispatch({ 
+        type: ACTIONS.TOGGLE_LOADING, 
+        payload: false });
     })
     .catch(function(error) {
         console.log(error);
     });
-
-    // axios.get('/movies')
-    // .then(response => {
-    //   dispatch({ 
-    //     type: ACTIONS.SET_MOVIES, 
-    //     payload: response.data });
-    // })
-    // .catch(function(error) {
-    //     console.log(error);
-    // });
+  }, [chosenDay]);
 
 
-  }, []);
-
-
-  const movieList = movies.map((movie, id) => {
-    return <MovieItem key={id} movie={movie} />
+  const movieList = movies.map((movie, index) => {
+    return <MovieItem key={index} movie={movie} />
   })
 
 

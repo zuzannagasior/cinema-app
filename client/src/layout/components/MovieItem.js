@@ -9,7 +9,7 @@ import {ReduxStoreContext, ACTIONS} from '../../Reducer.js'
 const MovieItem = ({ movie }) => {
     const {state, dispatch} = useContext(ReduxStoreContext);
 
-    console.log(movie, 'movie');
+    //console.log(movie, 'movie');
     const handleClick = (event) => {
 
         const payload = {
@@ -61,15 +61,11 @@ const MovieItem = ({ movie }) => {
             </section>
         </MovieItemBox>
         <p><LighterText>Screening</LighterText> 
-            <Link to="/hall/gold-diamond" css={css`text-decoration: none;`}>
-                    <CustomLink active={false} onClick={handleClick}>14:50</CustomLink>
-            </Link>
-            <Link to="/hall/gold-diamond" css={css`text-decoration: none;`}>
-                   <CustomLink active={true} onClick={handleClick}>15:40</CustomLink>
-            </Link>
-            <Link to="/hall/gold-diamond" css={css`text-decoration: none;`}>
-                   <CustomLink active={true} onClick={handleClick}>20:00</CustomLink>
-            </Link>
+            {movie.screening.map((item, index) => {
+                return <Link to={"/hall/" + item.hall} css={css`text-decoration: none;`} key={index}>
+                            <CustomLink active={false} onClick={handleClick}>{item.time}</CustomLink>
+                        </Link>
+            })}
         </p>
     </MovieItemCont>
   );

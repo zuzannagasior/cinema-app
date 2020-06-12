@@ -7,11 +7,12 @@ const CalendarSection = () => {
   const ref = useRef(null);
 
   const {state, dispatch} = useContext(ReduxStoreContext);
+  const { chosenDay, dates } = state;
 
   const handleClick = (event) => {
     dispatch({ 
-        type: ACTIONS.SET_DATE, 
-        payload: event.target.innerHTML });
+        type: ACTIONS.SET_DAY, 
+        payload: event.target.value });
   };
 
   const handleScroll = () => {
@@ -20,23 +21,55 @@ const CalendarSection = () => {
     }
   };
 
+  const setDates = () => {
+    let buttons = [];
+    const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+    const today = new Date;
+  
+    for (let i = 0; i < 7; i++) {
+      switch (i) {
+        case 0:
+            buttons.push({ text: 'TODAY', day: days[today.getDay() - 1] });
+            break;
+        case 1:
+            let tomorrow = new Date();
+            tomorrow.setDate(new Date().getDate()+1);
+            buttons.push({ text: 'TOMMOROW', day: days[tomorrow.getDay() - 1] });
+            break;
+        default:
+            let date = new Date();
+            date.setDate(new Date().getDate() + i - 1);  
+            buttons.push({ 
+            text: `${days[date.getDay()].toUpperCase()}, 
+            ${date.getDate()}.${date.getMonth().toString().length === 1 ? '0'.concat(date.getMonth().toString()) : date.getMonth()}`, 
+            day: days[date.getDay()] });
+      }
+    };
+    return buttons;
+  
+  }
+
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
+
+    const buttons = setDates();
+
+    dispatch({ 
+      type: ACTIONS.SET_DATES, 
+      payload: buttons });
 
     return () => {
       window.removeEventListener('scroll', () => handleScroll);
     };
   }, []);
 
+  const buttonsToDisplay = dates.map((date, index) => {
+    return <DateButton key={index} active={chosenDay === date.day} onClick={handleClick} value={date.day}>{date.text}</DateButton>
+  })
+  
   return (
     <CalendarCont fixed={isSticky} ref={ref}>
-        <DateButton active={state.date === 'Today'} onClick={handleClick}>Today</DateButton>
-        <DateButton active={state.date === 'Tommorow'} onClick={handleClick}>Tommorow</DateButton>
-        <DateButton active={state.date === 'Thursday, 4.06'} onClick={handleClick}>Thursday, 4.06</DateButton>
-        <DateButton active={state.date === 'Friday, 5.06'} onClick={handleClick}>Friday, 5.06</DateButton>
-        <DateButton active={state.date === 'Saturday, 6.06'} onClick={handleClick}>Saturday, 6.06</DateButton>
-        <DateButton active={state.date === 'Sunday, 7.06'} onClick={handleClick}>Sunday, 7.06</DateButton>
-        <DateButton active={state.date === 'Monday, 8.06'} onClick={handleClick}>Monday, 8.06</DateButton>
+        {buttonsToDisplay}
     </CalendarCont>
   );
 }

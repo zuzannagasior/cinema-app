@@ -11,7 +11,7 @@ import { ReduxStoreContext, reducer, initialState } from './Reducer.js';
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  
   return (
     <Container>
       <Header />
