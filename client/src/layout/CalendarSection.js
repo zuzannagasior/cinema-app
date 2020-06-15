@@ -25,15 +25,16 @@ const CalendarSection = () => {
     let buttons = [];
     const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
     const today = new Date;
-  
+    const dayOfWeek = today.getDay() === 0 ? 6 : today - 1;
+
     for (let i = 0; i < 7; i++) {
       switch (i) {
         case 0:
-            buttons.push({ text: 'TODAY', day: days[today.getDay() - 1] });
+            buttons.push({ text: 'TODAY', day: days[dayOfWeek] });
             break;
         case 1:
             let tomorrow = new Date();
-            tomorrow.setDate(new Date().getDate()+1);
+            tomorrow.setDate(new Date().getDate() + 1);
             buttons.push({ text: 'TOMMOROW', day: days[tomorrow.getDay() - 1] });
             break;
         default:

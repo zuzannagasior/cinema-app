@@ -39,9 +39,10 @@ export const reducer = (state, action) => {
   };
 
   const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+  const dayOfWeek = (new Date).getDay() === 0 ? 6 : (new Date).getDay() - 1;
 
   export const initialState = {
-    chosenDay: days[(new Date).getDay() - 1],
+    chosenDay: days[dayOfWeek],
     dates: [],
     movies: [],
     chosenMovie: {},
