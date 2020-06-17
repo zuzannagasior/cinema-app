@@ -11,8 +11,6 @@ const MovieItem = ({ movie }) => {
     const {state, dispatch} = useContext(ReduxStoreContext);
 
     const handleClick = (event, hallName) => {
-        console.log(hallName, 'hallName');
-
         const payload = {
             title: movie.title,
             hall: hallName,
@@ -25,8 +23,7 @@ const MovieItem = ({ movie }) => {
 
     const isLinkActive = ({ time }) => {
         let active = true;
-        console.log(state.chosenDay, 'state.chosenDay');
-        if (state.chosenDay === days[(new Date).getDay() - 1]) {
+        if (state.chosenDay === days[new Date().getDay() - 1]) {
             let date = new Date();
             date.setHours(time.slice(0, 2), time.slice(3), '00');
             if (date.getTime() < new Date().getTime()) {
@@ -83,7 +80,7 @@ const MovieItem = ({ movie }) => {
                                 <CustomLink active={isActive} onClick={(e) => handleClick(e, item.hall)}>{item.time}</CustomLink>
                             </Link>
                 } else {
-                    return <CustomLink active={isActive}>{item.time}</CustomLink>
+                    return <CustomLink active={isActive} key={index}>{item.time}</CustomLink>
                 }
             })}
         </p>

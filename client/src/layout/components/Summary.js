@@ -68,7 +68,6 @@ const Summary = () => {
     }
 
     const chosenTickets = state.chosenSeats.map((seat, index) => {
-        console.log(seat, 'seat');
         return  <tr key={index}>
                     <Td>{index + 1}</Td>
                     <Td>{seat.row}</Td>

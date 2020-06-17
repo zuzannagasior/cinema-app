@@ -11,11 +11,12 @@ export const ACTIONS = {
     ADD_SEAT: 'ADD_SEAT',
     DELETE_SEAT: 'DELETE_SEAT',
     SET_TICKET_TYPE: 'SET_TICKET_TYPE',
-    TOGGLE_LOADING: 'TOGGLE_LOADING'
+    TOGGLE_LOADING: 'TOGGLE_LOADING',
+    CLEAR_CHOSEN_SEATS: 'CLEAR_CHOSEN_SEATS'
 };
 
 export const reducer = (state, action) => {
-   console.log('Wywolanie reducer: ', { state, action });
+   //console.log('Wywolanie reducer: ', { state, action });
 
    const getSeatIndex = () => {
         const row = action.payload.row;
@@ -26,6 +27,7 @@ export const reducer = (state, action) => {
   
     switch (action.type) {
         case ACTIONS.SET_DAY:
+            console.log( action.payload, ' action.payload');
             return { ...state, chosenDay: action.payload };
 
         case ACTIONS.SET_DATES:
@@ -48,14 +50,17 @@ export const reducer = (state, action) => {
 
         case ACTIONS.SET_TICKET_TYPE:
             const newSeat = { ...state.chosenSeats[getSeatIndex()], ticketType: action.payload.ticketType, price: ticketPrices.get(action.payload.ticketType)};
-            console.log(newSeat, 'newSeat');
             return { ...state, chosenSeats: [...state.chosenSeats.slice(0, getSeatIndex()), newSeat, ...state.chosenSeats.slice(getSeatIndex() + 1)] };
-      default:
-        return state;
+      
+        case ACTIONS.CLEAR_CHOSEN_SEATS:
+            return { ...state, chosenSeats: [] };
+
+        default:
+            return state;
     }
   };
 
-  const dayOfWeek = (new Date).getDay() === 0 ? 6 : (new Date).getDay() - 1;
+  const dayOfWeek = new Date().getDay() === 0 ? 6 : new Date().getDay() - 1;
 
   export const initialState = {
     chosenDay: days[dayOfWeek],

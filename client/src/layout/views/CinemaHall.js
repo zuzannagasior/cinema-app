@@ -20,34 +20,42 @@ const CinemaHall = () => {
     console.log(state, 'state');
   };
 
-  const setCinemaSeats = (data = rows) => {
-    const rowsToSet = data.rows.map((row, index) => {
-      const seats = row.map((seat, index2) => {
-        return <SeatItem key={index2} seat={seat}/>
-      });
-      return <div css={css`display: flex; padding-top: 16px;`} key={index}>{seats}</div>
-    });
-
-    setRows(rowsToSet);
+  const handleReturnClick = () => {
+    dispatch({ 
+      type: ACTIONS.CLEAR_CHOSEN_SEATS});
   };
 
   useEffect(() => {
+    const setCinemaSeats = (data = rows) => {
+      const rowsToSet = data.rows.map((row, index) => {
+        const seats = row.map((seat, index2) => {
+          return <SeatItem key={index2} seat={seat}/>
+        });
+        return <div css={css`display: flex; padding-top: 16px;`} key={index}>{seats}</div>
+      });
+  
+      setRows(rowsToSet);
+    };
+
     dispatch({ 
       type: ACTIONS.TOGGLE_LOADING, 
       payload: true });
 
-    axios.get(`/halls/${hall}`)
-    .then(response => {
-
-      setCinemaSeats(response.data);
-
-      dispatch({ 
-        type: ACTIONS.TOGGLE_LOADING, 
-        payload: false });
-    })
-    .catch(function(error) {
-        console.log(error);
-    });
+      console.log(hall, 'hall');
+      if (hall) {
+        axios.get(`/halls/${hall}`)
+        .then(response => {
+          console.log(response, 'response');
+          setCinemaSeats(response.data);
+    
+          dispatch({ 
+            type: ACTIONS.TOGGLE_LOADING, 
+            payload: false });
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+      }
   }, []);
 
   if (Object.keys(state.chosenMovie).length === 0) {
@@ -66,7 +74,7 @@ const CinemaHall = () => {
           </div>}
           {chosenSeats.length > 0 && <Summary />}
           <div css={css`transform: translateX(-25%);`}>
-            <Link to="/">
+            <Link to="/" onClick={handleReturnClick}>
                 <CustomButton className="secondary">Return</CustomButton>
             </Link>
             <CustomButton onClick={handleBookClick}>Book</CustomButton>

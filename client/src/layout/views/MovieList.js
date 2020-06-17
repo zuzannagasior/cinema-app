@@ -18,7 +18,6 @@ const MovieList = () => {
 
     axios.get(`/repertoire/${chosenDay}`)
     .then(response => {
-      console.log(response, 'response 2');
       dispatch({ 
         type: ACTIONS.SET_MOVIES, 
         payload: response.data });
@@ -29,7 +28,7 @@ const MovieList = () => {
     .catch(function(error) {
         console.log(error);
     });
-  }, [chosenDay]);
+  }, [chosenDay, dispatch]);
 
 
   const movieList = movies.map((movie, index) => {

@@ -22,36 +22,37 @@ const CalendarSection = () => {
     }
   };
 
-  const setDates = () => {
-    let buttons = [];
-    const today = new Date;
-    const dayOfWeek = today.getDay() === 0 ? 6 : today - 1;
-
-    for (let i = 0; i < 7; i++) {
-      switch (i) {
-        case 0:
-            buttons.push({ text: 'TODAY', day: days[dayOfWeek] });
-            break;
-        case 1:
-            let tomorrow = new Date();
-            tomorrow.setDate(new Date().getDate() + 1);
-            buttons.push({ text: 'TOMMOROW', day: days[tomorrow.getDay() - 1] });
-            break;
-        default:
-            let date = new Date();
-            date.setDate(new Date().getDate() + i - 1);  
-            buttons.push({ 
-            text: `${days[date.getDay()].toUpperCase()}, 
-            ${date.getDate()}.${date.getMonth().toString().length === 1 ? '0'.concat(date.getMonth().toString()) : date.getMonth()}`, 
-            day: days[date.getDay()] });
-      }
-    };
-    return buttons;
-  
-  }
-
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
+
+    
+    const setDates = () => {
+      let buttons = [];
+      const today = new Date();
+      const dayOfWeek = today.getDay() === 0 ? 6 : today.getDay() - 1;
+
+      for (let i = 0; i < 7; i++) {
+        switch (i) {
+          case 0:
+              buttons.push({ text: 'TODAY', day: days[dayOfWeek] });
+              break;
+          case 1:
+              let tomorrow = new Date();
+              tomorrow.setDate(new Date().getDate() + 1);
+              buttons.push({ text: 'TOMMOROW', day: days[tomorrow.getDay() - 1] });
+              break;
+          default:
+              let date = new Date();
+              date.setDate(new Date().getDate() + i - 1);  
+              buttons.push({ 
+              text: `${days[date.getDay()].toUpperCase()}, 
+              ${date.getDate()}.${date.getMonth().toString().length === 1 ? '0'.concat(date.getMonth().toString()) : date.getMonth()}`, 
+              day: days[date.getDay()] });
+        }
+      };
+      return buttons;
+    
+    }
 
     const buttons = setDates();
 
@@ -62,7 +63,7 @@ const CalendarSection = () => {
     return () => {
       window.removeEventListener('scroll', () => handleScroll);
     };
-  }, []);
+  }, [dispatch]);
 
   const buttonsToDisplay = dates.map((date, index) => {
     return <DateButton key={index} active={chosenDay === date.day} onClick={handleClick} value={date.day}>{date.text}</DateButton>

@@ -143,7 +143,7 @@ export const Seat = styled.div`
     background-size: cover;
     margin-left: 24px;
     cursor: pointer;
-    &:first-child {
+    &:first-of-type {
      margin-left: 0;
     }
     &:hover {

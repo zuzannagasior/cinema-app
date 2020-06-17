@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { css, jsx } from '@emotion/core';
+import { jsx } from '@emotion/core';
 import { useState, useContext } from 'react';
 import { Seat } from '../../StyledComponents';
 import {ReduxStoreContext, ACTIONS} from '../../Reducer.js';

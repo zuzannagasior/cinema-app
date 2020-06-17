@@ -4,7 +4,6 @@ const axios = require('axios');
 
 
 router.route('/:day').get((req, res) => {
-    console.log('req.params.day', req.params.day);
 
     Repertoire.findOne({ day: req.params.day })
     .then(async data => {    
