@@ -1,6 +1,9 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import Select from 'react-select';
+import { Th, Td } from '../../StyledComponents';
+import {ReduxStoreContext, ACTIONS} from '../../Reducer.js'
+import { useContext } from 'react';
 
 const selectStyles = {
     container: (styles, {isFocused}) => ({ ...styles, width: "200px", borderRadius: "none", margin: "auto", color: '#DFDFE2'}),
@@ -30,6 +33,9 @@ const selectStyles = {
             fill: "#DFDFE2",
         },
     }),
+    singleValue: () => ({
+        color: '#DFDFE2'
+    }),
     option: (styles, {isSelected, isFocused}) => {
       return {
         ...styles,
@@ -42,16 +48,41 @@ const selectStyles = {
 };
 
 const Summary = () => {
+    const {state, dispatch} = useContext(ReduxStoreContext);
 
-const ticketTypeOption = [
-    { value: 'adult', label: 'adult' },
-    { value: 'children', label: 'children' }
-    ];
-const selectedOption = 'adult';
+    const ticketTypeOption = [
+        { value: 'adult', label: 'adult' },
+        { value: 'children', label: 'children' }
+        ];
 
-const handleChange = selectedOption => {
-    console.log(`Option selected:`, selectedOption);
-}
+    const handleChange = (selectedOption, seat) => {
+        const payload = {
+            ticketType: selectedOption.value,
+            row: seat.row,
+            seat: seat.seat
+        };
+
+        dispatch({ 
+            type: ACTIONS.SET_TICKET_TYPE, 
+            payload: payload });
+    }
+
+    const chosenTickets = state.chosenSeats.map((seat, index) => {
+        console.log(seat, 'seat');
+        return  <tr key={index}>
+                    <Td>{index + 1}</Td>
+                    <Td>{seat.row}</Td>
+                    <Td>{seat.seat}</Td>
+                    <Td><Select
+                            defaultValue={{value: seat.ticketType, label: seat.ticketType}}
+                            onChange={(e) => handleChange(e, seat)}
+                            options={ticketTypeOption}
+                            styles={selectStyles}
+                            isSearchable={false}
+                        /></Td>
+                    <Td>{seat.price}</Td>
+                </tr>;
+    });
 
   return (
     <div css={css`margin-bottom: 32px; width: 600px;`}>
@@ -59,43 +90,15 @@ const handleChange = selectedOption => {
         <table css={css`width: 100%;`}>
             <thead css={css`margin-bottom: 8px;`}>
                 <tr>
-                    <th css={css`padding-bottom: 16px;`}></th>
-                    <th css={css`padding-bottom: 16px;`}>row</th>
-                    <th css={css`padding-bottom: 16px;`}>seat</th>
-                    <th css={css`padding-bottom: 16px;`}>ticket type</th>
-                    <th css={css`padding-bottom: 16px;`}>price</th>
+                    <Th></Th>
+                    <Th>row</Th>
+                    <Th>seat</Th>
+                    <Th>ticket type</Th>
+                    <Th>price</Th>
                 </tr>
             </thead>
             <tbody css={css`text-align: center;`}>
-                <tr>
-                    <td css={css`padding-bottom: 16px;`}>1</td>
-                    <td css={css`padding-bottom: 16px;`}>I</td>
-                    <td css={css`padding-bottom: 16px;`}>8</td>
-                    <td css={css`padding-bottom: 16px;`}><Select
-                            defaultValue='adult'
-                            value={selectedOption}
-                            onChange={handleChange}
-                            options={ticketTypeOption}
-                            styles={selectStyles}
-                            isSearchable={false}
-                        /></td>
-                    <td css={css`padding-bottom: 16px;`}>15</td>
-                </tr>
-                <tr css={css`margin-bottom: 16px;`}>
-                    <td>2</td>
-                    <td>I</td>
-                    <td>7</td>
-                    <td> 
-                        <Select
-                            defaultValue={selectedOption}
-                            value={selectedOption}
-                            onChange={handleChange}
-                            options={ticketTypeOption}
-                            styles={selectStyles}
-                            isSearchable={false}
-                        /></td>
-                    <td>7</td>
-                </tr>
+                {chosenTickets}
             </tbody>
         </table>
         

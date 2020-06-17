@@ -1,5 +1,7 @@
 import { createContext } from 'react';
 import { days } from './config/DaysOfWeek';
+import { ticketPrices } from './config/TicketPrices';
+
 
 export const ACTIONS = {
     SET_CHOSEN_MOVIE: 'SET_CHOSEN_MOVIE',
@@ -14,6 +16,13 @@ export const ACTIONS = {
 
 export const reducer = (state, action) => {
    console.log('Wywolanie reducer: ', { state, action });
+
+   const getSeatIndex = () => {
+        const row = action.payload.row;
+        const seat = action.payload.seat;
+
+        return state.chosenSeats.findIndex(item => item.row === row && item.seat === seat);
+   };
   
     switch (action.type) {
         case ACTIONS.SET_DAY:
@@ -32,15 +41,15 @@ export const reducer = (state, action) => {
             return { ...state, chosenSeats: [...state.chosenSeats, action.payload] };
 
         case ACTIONS.DELETE_SEAT:
-            const row = action.payload.row;
-            const seat = action.payload.seat;
-
-            const seatIndex = state.chosenSeats.findIndex(item => item.row === row && item.seat === seat);
-            return { ...state, chosenSeats: [...state.chosenSeats.slice(0, seatIndex), ...state.chosenSeats.slice(seatIndex + 1)] };
+            return { ...state, chosenSeats: [...state.chosenSeats.slice(0, getSeatIndex()), ...state.chosenSeats.slice(getSeatIndex() + 1)] };
 
         case ACTIONS.TOGGLE_LOADING:
             return { ...state, loading: action.payload };
 
+        case ACTIONS.SET_TICKET_TYPE:
+            const newSeat = { ...state.chosenSeats[getSeatIndex()], ticketType: action.payload.ticketType, price: ticketPrices.get(action.payload.ticketType)};
+            console.log(newSeat, 'newSeat');
+            return { ...state, chosenSeats: [...state.chosenSeats.slice(0, getSeatIndex()), newSeat, ...state.chosenSeats.slice(getSeatIndex() + 1)] };
       default:
         return state;
     }

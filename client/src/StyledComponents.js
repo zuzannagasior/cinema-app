@@ -205,3 +205,13 @@ export const CustomButton = styled.button`
         }
     }
 `;
+
+// table
+
+export const Th = styled.th`
+    padding-bottom: 16px;
+`;
+
+export const Td = styled.td`
+    padding-bottom: 16px;
+`;

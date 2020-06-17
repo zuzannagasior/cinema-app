@@ -2,7 +2,8 @@
 import { css, jsx } from '@emotion/core';
 import { useState, useContext } from 'react';
 import { Seat } from '../../StyledComponents';
-import {ReduxStoreContext, ACTIONS} from '../../Reducer.js'
+import {ReduxStoreContext, ACTIONS} from '../../Reducer.js';
+import { ticketPrices } from '../../config/TicketPrices';
 
 const SeatItem = ({ seat }) => {
     const {dispatch} = useContext(ReduxStoreContext);
@@ -15,7 +16,7 @@ const SeatItem = ({ seat }) => {
         const payload = isChosen ? seat : 
             { ...seat, 
             ticketType: "adult", 
-            price: 15};
+            price: ticketPrices.get("adult")};
 
         dispatch({ 
           type: action, 
