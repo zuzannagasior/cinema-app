@@ -19,7 +19,7 @@ const App = () => {
         <ReduxStoreContext.Provider value={{state, dispatch}}>
           <BrowserRouter>    
             <Route path="/" exact component={MovieList} />     
-            <Route path="/hall/:type" component={CinemaHall} />
+            <Route path="/hall" component={CinemaHall} />
           </BrowserRouter>
         </ReduxStoreContext.Provider>
       </Main>

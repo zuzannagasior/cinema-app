@@ -1,4 +1,5 @@
 import { createContext } from 'react';
+import { days } from './config/DaysOfWeek';
 
 export const ACTIONS = {
     SET_CHOSEN_MOVIE: 'SET_CHOSEN_MOVIE',
@@ -30,6 +31,13 @@ export const reducer = (state, action) => {
         case ACTIONS.ADD_SEAT:
             return { ...state, chosenSeats: [...state.chosenSeats, action.payload] };
 
+        case ACTIONS.DELETE_SEAT:
+            const row = action.payload.row;
+            const seat = action.payload.seat;
+
+            const seatIndex = state.chosenSeats.findIndex(item => item.row === row && item.seat === seat);
+            return { ...state, chosenSeats: [...state.chosenSeats.slice(0, seatIndex), ...state.chosenSeats.slice(seatIndex + 1)] };
+
         case ACTIONS.TOGGLE_LOADING:
             return { ...state, loading: action.payload };
 
@@ -38,7 +46,6 @@ export const reducer = (state, action) => {
     }
   };
 
-  const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
   const dayOfWeek = (new Date).getDay() === 0 ? 6 : (new Date).getDay() - 1;
 
   export const initialState = {

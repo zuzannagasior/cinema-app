@@ -3,26 +3,25 @@ import { css, jsx } from '@emotion/core';
 import { Link } from 'react-router-dom';
 import { MovieItemCont, MovieItemBox, PosterImg, LighterText, CustomLink } from '../../StyledComponents';
 import { useContext } from 'react';
-import {ReduxStoreContext, ACTIONS} from '../../Reducer.js'
+import { ReduxStoreContext, ACTIONS } from '../../Reducer.js';
+import { days } from '../../config/DaysOfWeek';
 
 
 const MovieItem = ({ movie }) => {
     const {state, dispatch} = useContext(ReduxStoreContext);
 
-    //console.log(movie, 'movie');
-    const handleClick = (event) => {
+    const handleClick = (event, hallName) => {
+        console.log(hallName, 'hallName');
 
         const payload = {
             title: movie.title,
-            hall: "GOLD DIAMOND HALL",
+            hall: hallName,
             hour: event.target.innerHTML
         }
         dispatch({ 
             type: ACTIONS.SET_CHOSEN_MOVIE, 
             payload: payload });
     };
-
-    const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
     const isLinkActive = ({ time }) => {
         let active = true;
@@ -80,8 +79,8 @@ const MovieItem = ({ movie }) => {
             {movie.screening.map((item, index) => {
                 const isActive = isLinkActive(item);
                 if (isActive) {
-                    return <Link to={"/hall/" + item.hall} css={css`text-decoration: none;`} key={index}>
-                                <CustomLink active={isActive} onClick={handleClick}>{item.time}</CustomLink>
+                    return <Link to="/hall" css={css`text-decoration: none;`} key={index}>
+                                <CustomLink active={isActive} onClick={(e) => handleClick(e, item.hall)}>{item.time}</CustomLink>
                             </Link>
                 } else {
                     return <CustomLink active={isActive}>{item.time}</CustomLink>

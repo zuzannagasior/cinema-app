@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useContext } from 'react';
 import {ReduxStoreContext, ACTIONS} from '../Reducer.js'
 import { CalendarCont, DateButton } from '../StyledComponents';
+import { days } from '../config/DaysOfWeek';
 
 const CalendarSection = () => {
   const [isSticky, setCalendarSticky] = useState(false);
@@ -23,7 +24,6 @@ const CalendarSection = () => {
 
   const setDates = () => {
     let buttons = [];
-    const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
     const today = new Date;
     const dayOfWeek = today.getDay() === 0 ? 6 : today - 1;
 

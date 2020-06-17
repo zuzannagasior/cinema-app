@@ -1,5 +1,5 @@
 {
-    "hall": "gold-diamond",
+    "name": "gold-diamond",
     "rows": [
         [{"row": "I", "seat": 1, "isTaken": false}, {"row": "I", "seat": 2, "isTaken": false}, {"row": "I", "seat": 3, "isTaken": false}, {"row": "I", "seat": 4, "isTaken": false}, {"row": "I", "seat": 5, "isTaken": false}, {"row": "I", "seat": 6, "isTaken": false}, {"row": "I", "seat": 7, "isTaken": false}, {"row": "I", "seat": 8, "isTaken": false}, {"row": "I", "seat": 9, "isTaken": false}, {"row": "I", "seat": 10, "isTaken": false}, {"row": "I", "seat": 11, "isTaken": false}, {"row": "I", "seat": 12, "isTaken": false}],
         [{"row": "II", "seat": 1, "isTaken": false}, {"row": "II", "seat": 2, "isTaken": false}, {"row": "II", "seat": 3, "isTaken": false}, {"row": "II", "seat": 4, "isTaken": false}, {"row": "II", "seat": 5, "isTaken": false}, {"row": "II", "seat": 6, "isTaken": false}, {"row": "II", "seat": 7, "isTaken": false}, {"row": "II", "seat": 8, "isTaken": false}, {"row": "II", "seat": 9, "isTaken": false}, {"row": "II", "seat": 10, "isTaken": false}, {"row": "II", "seat": 11, "isTaken": false}, {"row": "II", "seat": 12, "isTaken": false}],
