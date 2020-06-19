@@ -1,6 +1,5 @@
 const router = require('express').Router();
 let Screening = require('../models/screening.model');
-let Repertoire = require('../models/repertoire.model');
 
 router.route('/:date/:title/:time').get((req, res) => {
     const date = req.params.date;
@@ -28,7 +27,7 @@ router.route('/').post((req, res) => {
                 screening.rows = newRows;
             
                 screening.save()
-                    .then(() => res.json('Screening updated!'))
+                    .then((response) => res.json(response))
                     .catch(err => res.status(400).json('Error: ' + err));
             })
         .catch(err => res.status(400).json('Error: ' + err));
@@ -44,8 +43,8 @@ router.route('/').post((req, res) => {
         });
     
         newScreening.save()
-        .then(() => {
-            res.json('Screening added!');
+        .then((response) => {
+            res.json(response);
         })
         .catch(err => res.status(400).json('Error: ' + err));
     }

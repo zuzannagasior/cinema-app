@@ -206,6 +206,22 @@ export const CustomButton = styled.button`
     }
 `;
 
+// inputs
+
+export const CustomInput = styled.input`
+    background-color: #1d1d20;
+    border: 1px solid #dfdfe2;
+    padding: 8px;
+    color: #dfdfe2;
+    transition: .2s;
+    margin-bottom: 16px;
+    width: 200px;
+    &:focus {
+            border: 2px solid #3797a4;
+            outline: none;
+        }
+`;
+
 // table
 
 export const Th = styled.th`

@@ -4,11 +4,13 @@ import axios from 'axios';
 import { HallConteiner, CustomButton } from '../../StyledComponents';
 import Summary from '../components/Summary.js';
 import SeatItem from '../components/SeatItem.js';
+import UserModal from '../components/UserModal.js';
 import { Link, Redirect} from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import {ReduxStoreContext, ACTIONS} from '../../Reducer.js'
 import Loading from '../components/Loading';
 import { hallNames } from '../../config/HallNames';
+import { useHistory } from "react-router-dom";
 
 const CinemaHall = () => {
   const {state, dispatch} = useContext(ReduxStoreContext);
@@ -16,16 +18,23 @@ const CinemaHall = () => {
   const [hallBefore, setHallBefore] = useState({rows: [], screeningId: null});
   const [rows, setRows] = useState([]);
 
-  const { chosenMovie, loading, chosenSeats, chosenDay } = state;
+  const { chosenMovie, loading, chosenSeats, chosenDay, modalIsOpen } = state;
   const { title, hall, time } = chosenMovie;
+
+  const history = useHistory();
 
   const handleReturnClick = () => {
     dispatch({ 
       type: ACTIONS.CLEAR_CHOSEN_SEATS});
   };
 
-  const handleBookClick = () => {
-    console.log(state, 'state');
+  const save = (userData) => {
+
+    dispatch({ 
+      type: ACTIONS.TOGGLE_LOADING, 
+      payload: true });
+
+    const { email, name } = userData;
 
      // create new document for screening (when first ticket is booked) or update existing screening data
      const rowTakenSeats = hallBefore.rows.map(row => {
@@ -64,10 +73,42 @@ const CinemaHall = () => {
       axios.post(`/screenings`, params)
       .then(response => {
         console.log(response, 'response post screenings');
+        console.log(chosenSeats, 'chosenSeats');
+        const newBooking = {
+          screeningId: response.data._id,
+          name: name,
+          email: email,
+          tickets: chosenSeats
+        };
+
+        axios.post(`/bookings`, newBooking)
+        .then(response => {
+          console.log(response, 'response post booking');
+          dispatch({ 
+            type: ACTIONS.TOGGLE_LOADING, 
+            payload: false });
+          dispatch({ 
+              type: ACTIONS.SET_MODAL_IS_OPEN, 
+              payload: false });
+          dispatch({ 
+              type: ACTIONS.CLEAR_CHOSEN_SEATS});
+          history.push("/");
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+
       })
       .catch(function(error) {
           console.log(error);
       });
+  };
+
+  const handleBookClick = () => {
+    console.log(state, 'state');
+    dispatch({ 
+      type: ACTIONS.SET_MODAL_IS_OPEN,
+      payload: true});
   };
 
   useEffect(() => {
@@ -131,6 +172,7 @@ const CinemaHall = () => {
   } else {
     return (
       <HallConteiner>
+          <UserModal save={save}/>
           <h1>{title}</h1>
           <h2>{hallNames.get(hall)}</h2>
           {loading 

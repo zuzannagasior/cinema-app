@@ -12,7 +12,8 @@ export const ACTIONS = {
     DELETE_SEAT: 'DELETE_SEAT',
     SET_TICKET_TYPE: 'SET_TICKET_TYPE',
     TOGGLE_LOADING: 'TOGGLE_LOADING',
-    CLEAR_CHOSEN_SEATS: 'CLEAR_CHOSEN_SEATS'
+    CLEAR_CHOSEN_SEATS: 'CLEAR_CHOSEN_SEATS',
+    SET_MODAL_IS_OPEN: 'SET_MODAL_IS_OPEN'
 };
 
 export const reducer = (state, action) => {
@@ -55,6 +56,9 @@ export const reducer = (state, action) => {
         case ACTIONS.CLEAR_CHOSEN_SEATS:
             return { ...state, chosenSeats: [] };
 
+        case ACTIONS.SET_MODAL_IS_OPEN:
+            return { ...state, modalIsOpen: action.payload };  
+
         default:
             return state;
     }
@@ -68,7 +72,8 @@ export const reducer = (state, action) => {
     movies: [],
     chosenMovie: {},
     chosenSeats: [],
-    loading: false
+    loading: false,
+    modalIsOpen: false
   };
   
   export const ReduxStoreContext = createContext();

@@ -14,9 +14,10 @@ const SeatItem = ({ seat }) => {
 
         const action = isChosen ? ACTIONS.DELETE_SEAT : ACTIONS.ADD_SEAT;
         const payload = isChosen ? seat : 
-            { ...seat, 
-            ticketType: "adult", 
-            price: ticketPrices.get("adult")};
+            {   row: seat.row, 
+                seat: seat.seat,
+                ticketType: "adult", 
+                price: ticketPrices.get("adult")};
 
         dispatch({ 
           type: action, 
