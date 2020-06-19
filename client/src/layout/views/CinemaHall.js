@@ -113,6 +113,8 @@ const CinemaHall = () => {
 
   useEffect(() => {
 
+    document.title = `${title} | ${hallNames.get(hall)} | `.concat("CINEMA with my favourite movies")
+
     const setCinemaSeats = (data = rows) => {
       console.log(data, 'data');
       const rowsToSet = data.rows.map((row, index) => {

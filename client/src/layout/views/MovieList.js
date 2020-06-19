@@ -18,6 +18,7 @@ const MovieList = () => {
 
     axios.get(`/repertoire/${chosenDay.day}`)
     .then(response => {
+      document.title = `${chosenDay.day.toUpperCase()} | `.concat("CINEMA with my favourite movies")
       dispatch({ 
         type: ACTIONS.SET_MOVIES, 
         payload: response.data });
