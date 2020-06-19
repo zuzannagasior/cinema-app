@@ -2,22 +2,16 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const seatSchema = new Schema({
-    row: String,
-    seat: String,
-    taken: Boolean
-});
-
-const screeningSchema = new Schema({ 
+const screeningSchema = new Schema({
     hall: String,
-    time: String,
-    seats: [seatSchema]
+    time: String
 });
 
 const moviesSchema = new Schema({ 
+    _id: String,
     title: String, 
     imdb_id: String, 
-    screening: [screeningSchema] 
+    screening: [{screeningSchema}]
 });
 
 

@@ -10,10 +10,15 @@ const CalendarSection = () => {
   const {state, dispatch} = useContext(ReduxStoreContext);
   const { chosenDay, dates } = state;
 
-  const handleClick = (event) => {
+  const handleClick = (date) => {
+    const payload = {
+      day: date.day,
+      date: date.date
+    };
+
     dispatch({ 
         type: ACTIONS.SET_DAY, 
-        payload: event.target.value });
+        payload: payload });
   };
 
   const handleScroll = () => {
@@ -34,12 +39,12 @@ const CalendarSection = () => {
       for (let i = 0; i < 7; i++) {
         switch (i) {
           case 0:
-              buttons.push({ text: 'TODAY', day: days[dayOfWeek] });
+              buttons.push({ text: 'TODAY', day: days[dayOfWeek], date: today });
               break;
           case 1:
               let tomorrow = new Date();
               tomorrow.setDate(new Date().getDate() + 1);
-              buttons.push({ text: 'TOMMOROW', day: days[tomorrow.getDay() - 1] });
+              buttons.push({ text: 'TOMMOROW', day: days[tomorrow.getDay() - 1], date: tomorrow });
               break;
           default:
               let date = new Date();
@@ -47,7 +52,8 @@ const CalendarSection = () => {
               buttons.push({ 
               text: `${days[date.getDay()].toUpperCase()}, 
               ${date.getDate()}.${date.getMonth().toString().length === 1 ? '0'.concat(date.getMonth().toString()) : date.getMonth()}`, 
-              day: days[date.getDay()] });
+              day: days[date.getDay()], 
+              date: date});
         }
       };
       return buttons;
@@ -66,7 +72,7 @@ const CalendarSection = () => {
   }, [dispatch]);
 
   const buttonsToDisplay = dates.map((date, index) => {
-    return <DateButton key={index} active={chosenDay === date.day} onClick={handleClick} value={date.day}>{date.text}</DateButton>
+    return <DateButton key={index} active={chosenDay.day === date.day} onClick={() => handleClick(date)} >{date.text}</DateButton>
   })
   
   return (

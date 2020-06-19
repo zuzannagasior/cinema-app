@@ -23,11 +23,15 @@ connection.once('open', () => {
 const moviesRouter = require('./routes/movies');
 const repertoireRouter = require('./routes/repertoire');
 const cinemaHallsRouter = require('./routes/cinema-halls');
+const screeningsRouter = require('./routes/screenings');
+//const bookingsRouter = require('./routes/bookings');
 // const usersRouter = require('./routes/users');
 
 app.use('/movies', moviesRouter);
 app.use('/repertoire', repertoireRouter);
 app.use('/halls', cinemaHallsRouter);
+app.use('/screenings', screeningsRouter);
+//app.use('/bookings', bookingsRouter);
 // app.use('/users', usersRouter);
 
 if (process.env.NODE_ENV === 'production') {

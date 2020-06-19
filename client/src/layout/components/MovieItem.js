@@ -10,11 +10,11 @@ import { days } from '../../config/DaysOfWeek';
 const MovieItem = ({ movie }) => {
     const {state, dispatch} = useContext(ReduxStoreContext);
 
-    const handleClick = (event, hallName) => {
+    const handleClick = ({hall, time}) => {
         const payload = {
             title: movie.title,
-            hall: hallName,
-            hour: event.target.innerHTML
+            hall: hall,
+            time: time
         }
         dispatch({ 
             type: ACTIONS.SET_CHOSEN_MOVIE, 
@@ -23,7 +23,7 @@ const MovieItem = ({ movie }) => {
 
     const isLinkActive = ({ time }) => {
         let active = true;
-        if (state.chosenDay === days[new Date().getDay() - 1]) {
+        if (state.chosenDay.day === days[new Date().getDay() - 1]) {
             let date = new Date();
             date.setHours(time.slice(0, 2), time.slice(3), '00');
             if (date.getTime() < new Date().getTime()) {
@@ -77,7 +77,7 @@ const MovieItem = ({ movie }) => {
                 const isActive = isLinkActive(item);
                 if (isActive) {
                     return <Link to="/hall" css={css`text-decoration: none;`} key={index}>
-                                <CustomLink active={isActive} onClick={(e) => handleClick(e, item.hall)}>{item.time}</CustomLink>
+                                <CustomLink active={isActive} onClick={() => handleClick(item)}>{item.time}</CustomLink>
                             </Link>
                 } else {
                     return <CustomLink active={isActive} key={index}>{item.time}</CustomLink>

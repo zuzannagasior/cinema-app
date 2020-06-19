@@ -16,7 +16,7 @@ const MovieList = () => {
       type: ACTIONS.TOGGLE_LOADING, 
       payload: true });
 
-    axios.get(`/repertoire/${chosenDay}`)
+    axios.get(`/repertoire/${chosenDay.day}`)
     .then(response => {
       dispatch({ 
         type: ACTIONS.SET_MOVIES, 
