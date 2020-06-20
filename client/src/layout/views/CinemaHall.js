@@ -38,7 +38,7 @@ const CinemaHall = () => {
     const { email, name } = userData;
 
     // create new document for screening (when first ticket is booked) or update existing screening data
-    const rowTakenSeats = hallBefore.rows.map((row) => {
+    const rowTakenSeats = hallBefore.rows.reverse().map((row) => {
       return row.map((seat) => {
         const changeSeat =
           chosenSeats.filter((s) => s.row === seat.row && s.seat === seat.seat)
@@ -115,8 +115,8 @@ const CinemaHall = () => {
       "CINEMA with my favourite movies"
     );
 
-    const setCinemaSeats = (data = rows) => {
-      const rowsToSet = data.rows.reverse().map((row, index) => {
+    const setCinemaSeats = (rows) => {
+      const rowsToSet = rows.reverse().map((row, index) => {
         const seats = row.map((seat, index2) => {
           return <SeatItem key={index2} seat={seat} />;
         });
@@ -151,7 +151,7 @@ const CinemaHall = () => {
             rows: response.data.rows,
             screeningId: response.data._id,
           });
-          setCinemaSeats(response.data);
+          setCinemaSeats(response.data.rows);
 
           dispatch({
             type: ACTIONS.TOGGLE_LOADING,
@@ -163,7 +163,7 @@ const CinemaHall = () => {
             .get(`/halls/${hall}`)
             .then((response) => {
               setHallBefore({ rows: response.data.rows, screeningId: null });
-              setCinemaSeats(response.data);
+              setCinemaSeats(response.data.rows);
 
               dispatch({
                 type: ACTIONS.TOGGLE_LOADING,
