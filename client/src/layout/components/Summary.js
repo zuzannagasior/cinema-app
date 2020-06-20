@@ -1,12 +1,12 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import Select from 'react-select';
-import { Th, Td } from '../../StyledComponents';
+import { Th, Td, SummaryBox } from '../../StyledComponents';
 import {ReduxStoreContext, ACTIONS} from '../../Reducer.js'
 import { useContext } from 'react';
 
 const selectStyles = {
-    container: (styles, {isFocused}) => ({ ...styles, width: "200px", borderRadius: "none", margin: "auto", color: '#DFDFE2'}),
+    container: (styles) => ({ ...styles, width: "200px", borderRadius: "none", margin: "auto", color: '#DFDFE2'}),
     control: (styles, {isFocused}) => ({ ...styles, 
         backgroundColor: 'transparent', 
         borderRadius: "none", 
@@ -84,7 +84,7 @@ const Summary = () => {
     });
 
   return (
-    <div css={css`margin-bottom: 32px; width: 600px;`}>
+    <SummaryBox>
         <h2 css={css`margin-bottom: 16px;`}>Summary</h2>
         <table css={css`width: 100%;`}>
             <thead css={css`margin-bottom: 8px;`}>
@@ -99,9 +99,8 @@ const Summary = () => {
             <tbody css={css`text-align: center;`}>
                 {chosenTickets}
             </tbody>
-        </table>
-        
-    </div>
+        </table>   
+    </SummaryBox>
   );
 }
 

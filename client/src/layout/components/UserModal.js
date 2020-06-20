@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core';
+import { jsx, css, keyframes } from '@emotion/core';
 import { useState, useContext } from 'react';
 import {ReduxStoreContext, ACTIONS} from '../../Reducer.js';
 import ReactModal from 'react-modal';
@@ -15,7 +15,7 @@ const customModalStyles = {
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
       backgroundColor: "#1D1D20",
-      width: "50%",
+      width: "500px",
       minHeight: "240px",
       borderColor: "#dfdfe2",
       borderRadius: "0",
@@ -25,6 +25,15 @@ const customModalStyles = {
       backgroundColor: "rgba(29, 29, 32, 0.8)",
     },
   };
+
+const changeOpacity = keyframes`
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+`;
 
 ReactModal.setAppElement('#root');
 
@@ -56,15 +65,15 @@ const UserModal = ({ save }) => {
     };
 
     return <ReactModal isOpen={state.modalIsOpen} style={customModalStyles} shouldCloseOnEsc={true} shouldReturnFocusAfterClose={true}>
-                <form onSubmit={handleSubmit} css={css`width: 100%; flex-basis: 100%; display: flex; flex-direction: column; align-items: center;`}>
+                <form onSubmit={handleSubmit} css={css`width: 100%; flex-basis: 100%; display: flex; flex-direction: column; align-items: center; animation: ${changeOpacity} .2s;`}>
                     <div css={css`flex-grow: 1; display: flex; flex-direction: column; justify-content: center; margin-top: 24px;`}>
-                        <CustomInput id="userName" placeholder="Name & Surname" onChange={handleChange} />
-                        <CustomInput id="email" placeholder="example@email.com" onChange={handleChange} />
+                        <CustomInput id="userName" type="text" placeholder="Name & Surname" onChange={handleChange} required/>
+                        <CustomInput id="email" type="email" placeholder="example@email.com" onChange={handleChange} required/>
                     </div>
-                    {state.loading && <Loading css={css`margin-bottom: 16px;`} />}
-                    <div css={css`transform: translateX(-25%);`}>
+                    {state.loading && <Loading />}
+                    <div css={css`transform: translateX(-25%); margin-top: 16px;`}>
                         <CustomButton type="button" className="secondary" onClick={handleCloseModal}>Return</CustomButton>
-                        <CustomButton type="submit">Book</CustomButton>
+                        <CustomButton type="submit" >Book</CustomButton>
                     </div>
                 </form>
             </ReactModal>;

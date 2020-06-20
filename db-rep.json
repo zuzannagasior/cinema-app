@@ -5,32 +5,52 @@
             "title": "Pulp Fiction",
             "imdb_id": "tt0110912",
             "screening": [
-                    {"time": "10:10", "hall": "gold-diamond"},
-                    {"time": "12:30", "hall": "gold-diamond"}
+                    {"time": "10:00", "hall": "gold-diamond"},
+                    {"time": "15:00", "hall": "brown-diamond"},
+                    {"time": "21:00", "hall": "silver-diamond"}
+
                         ]
         },
         {
             "title": "Portrait of a Lady on Fire",
             "imdb_id": "tt8613070",
             "screening": [
-                    {"time": "13:10", "hall": "gold-diamond"},
-                    {"time": "18:30", "hall": "gold-diamond"}
+                    {"time": "10:00", "hall": "brown-diamond"},
+                    {"time": "12:30", "hall": "gold-diamond"},
+                    {"time": "18:00", "hall": "silver-diamond"}
                         ]
         },
         {
             "title": "Room",
             "imdb_id": "tt3170832",
             "screening": [
-                    {"time": "18:10", "hall": "gold-diamond"},
-                    {"time": "20:30", "hall": "gold-diamond"}
+                    {"time": "12:30", "hall": "brown-diamond"},
+                    {"time": "15:00", "hall": "gold-diamond"}
                         ]
         },
         {
             "title": "Isle of dogs",
             "imdb_id": "tt5104604",
             "screening": [
-                    {"time": "19:10", "hall": "gold-diamond"},
-                    {"time": "22:30", "hall": "gold-diamond"}
+                    {"time": "10:00", "hall": "silver-diamond"},
+                    {"time": "18:00", "hall": "brown-diamond"}
+                        ]
+        },
+        {
+            "title": "Spirited Away",
+            "imdb_id": "tt0245429",
+            "screening": [
+                    {"time": "12:30", "hall": "silver-diamond"},
+                    {"time": "21:00", "hall": "gold-diamond"}
+                        ]
+        },
+        {
+            "title": "The Hateful Eight",
+            "imdb_id": "tt3460252",
+            "screening": [
+                    {"time": "15:00", "hall": "silver-diamond"},
+                    {"time": "18:00", "hall": "gold-diamond"},
+                    {"time": "21:00", "hall": "brown-diamond"}
                         ]
         }
                 ]
@@ -39,11 +59,55 @@
     "day": "tuesday",
     "movies": [
         {
-            "title": "Pulp Fiction",
-            "imdb_id": "tt0110912",
+            "title": "The Grand Budapest Hotel",
+            "imdb_id": "tt2278388",
             "screening": [
-                    {"time": "10:10", "hall": "gold-diamond"},
-                    {"time": "12:30", "hall": "gold-diamond"}
+                    {"time": "10:00", "hall": "gold-diamond"},
+                    {"time": "15:00", "hall": "brown-diamond"},
+                    {"time": "21:00", "hall": "silver-diamond"}
+
+                        ]
+        },
+        {
+            "title": "Edward Scissorhands",
+            "imdb_id": "tt0099487",
+            "screening": [
+                    {"time": "10:00", "hall": "silver-diamond"},
+                    {"time": "18:00", "hall": "brown-diamond"}
+                        ]
+        },
+        {
+            "title": "Roman Holiday",
+            "imdb_id": "tt0046250",
+            "screening": [
+                    {"time": "12:30", "hall": "brown-diamond"},
+                    {"time": "15:00", "hall": "gold-diamond"}
+                        ]
+        },
+        {
+            "title": "Chicago",
+            "imdb_id": "tt0299658",
+            "screening": [
+                    {"time": "10:00", "hall": "brown-diamond"},
+                    {"time": "12:30", "hall": "gold-diamond"},
+                    {"time": "18:00", "hall": "silver-diamond"}
+                        ]
+        },
+        {
+            "title": "The Notebook",
+            "imdb_id": "tt0332280",
+            "screening": [
+                    {"time": "15:00", "hall": "silver-diamond"},
+                    {"time": "18:00", "hall": "gold-diamond"},
+                    {"time": "21:00", "hall": "brown-diamond"}
+                        ]
+        },
+        {
+            "title": "Memoirs of a Geisha",
+            "imdb_id": "tt0397535",
+            "screening": [
+                    {"time": "12:30", "hall": "silver-diamond"},
+                    {"time": "21:00", "hall": "gold-diamond"}
                         ]
         }
                 ]
@@ -52,11 +116,55 @@
     "day": "wednesday",
     "movies": [
         {
-            "title": "Pulp Fiction",
-            "imdb_id": "tt0110912",
+            "title": "The Illusionist",
+            "imdb_id": "tt0443543",
             "screening": [
-                    {"time": "10:10", "hall": "gold-diamond"},
-                    {"time": "12:30", "hall": "gold-diamond"}
+                    {"time": "10:00", "hall": "gold-diamond"},
+                    {"time": "15:00", "hall": "brown-diamond"},
+                    {"time": "21:00", "hall": "silver-diamond"}
+
+                        ]
+        },
+        {
+            "title": "Scoop",
+            "imdb_id": "tt0457513",
+            "screening": [
+                    {"time": "10:00", "hall": "silver-diamond"},
+                    {"time": "18:00", "hall": "brown-diamond"}
+                        ]
+        },
+        {
+            "title": "Stardust",
+            "imdb_id": "tt0486655",
+            "screening": [
+                    {"time": "12:30", "hall": "brown-diamond"},
+                    {"time": "15:00", "hall": "gold-diamond"}
+                        ]
+        },
+        {
+            "title": "Into the Wild",
+            "imdb_id": "tt0758758",
+            "screening": [
+                    {"time": "12:30", "hall": "silver-diamond"},
+                    {"time": "21:00", "hall": "gold-diamond"}
+                        ]
+        },
+        {
+            "title": "Slumdog Millionaire",
+            "imdb_id": "tt1010048",
+            "screening": [
+                    {"time": "10:00", "hall": "brown-diamond"},
+                    {"time": "12:30", "hall": "gold-diamond"},
+                    {"time": "18:00", "hall": "silver-diamond"}
+                        ]
+        },
+        {
+            "title": "Inception",
+            "imdb_id": "tt1375666",
+            "screening": [
+                    {"time": "15:00", "hall": "silver-diamond"},
+                    {"time": "18:00", "hall": "gold-diamond"},
+                    {"time": "21:00", "hall": "brown-diamond"}
                         ]
         }
                 ]
@@ -65,11 +173,55 @@
     "day": "thursday",
     "movies": [
         {
-            "title": "Pulp Fiction",
-            "imdb_id": "tt0110912",
+            "title": "Intouchables",
+            "imdb_id": "tt1675434",
             "screening": [
-                    {"time": "10:10", "hall": "gold-diamond"},
-                    {"time": "12:30", "hall": "gold-diamond"}
+                    {"time": "10:00", "hall": "gold-diamond"},
+                    {"time": "15:00", "hall": "brown-diamond"},
+                    {"time": "21:00", "hall": "silver-diamond"}
+
+                        ]
+        },
+        {
+            "title": "10 Things I Hate About You",
+            "imdb_id": "tt0147800",
+            "screening": [
+                    {"time": "10:00", "hall": "brown-diamond"},
+                    {"time": "12:30", "hall": "gold-diamond"},
+                    {"time": "18:00", "hall": "silver-diamond"}
+                        ]
+        },
+        {
+            "title": "One Flew Over the Cuckoo's Nest",
+            "imdb_id": "tt0073486",
+            "screening": [
+                    {"time": "12:30", "hall": "brown-diamond"},
+                    {"time": "15:00", "hall": "gold-diamond"}
+                        ]
+        },
+        {
+            "title": "Scent of a Woman",
+            "imdb_id": "tt0105323",
+            "screening": [
+                    {"time": "15:00", "hall": "silver-diamond"},
+                    {"time": "18:00", "hall": "gold-diamond"},
+                    {"time": "21:00", "hall": "brown-diamond"}
+                        ]
+        },
+        {
+            "title": "Amadeus",
+            "imdb_id": "tt0086879",
+            "screening": [
+                    {"time": "10:00", "hall": "silver-diamond"},
+                    {"time": "18:00", "hall": "brown-diamond"}
+                        ]
+        },
+        {
+            "title": "Memento",
+            "imdb_id": "tt0209144",
+            "screening": [
+                    {"time": "12:30", "hall": "silver-diamond"},
+                    {"time": "21:00", "hall": "gold-diamond"}
                         ]
         }
                 ]
@@ -78,11 +230,55 @@
     "day": "friday",
     "movies": [
         {
-            "title": "Pulp Fiction",
-            "imdb_id": "tt0110912",
+            "title": "Beetle Juice",
+            "imdb_id": "tt0094721",
             "screening": [
-                    {"time": "10:10", "hall": "gold-diamond"},
-                    {"time": "12:30", "hall": "gold-diamond"}
+                    {"time": "12:30", "hall": "brown-diamond"},
+                    {"time": "15:00", "hall": "gold-diamond"}
+                        ]
+        },
+        {
+            "title": "Some Like It Hot",
+            "imdb_id": "tt0053291",
+            "screening": [
+                    {"time": "10:00", "hall": "silver-diamond"},
+                    {"time": "18:00", "hall": "brown-diamond"}
+                        ]
+        },
+        {
+            "title": "Catch Me If You Can",
+            "imdb_id": "tt0264464",
+            "screening": [
+                    {"time": "12:30", "hall": "silver-diamond"},
+                    {"time": "21:00", "hall": "gold-diamond"}
+                        ]
+        },
+        {
+            "title": "Big Fish",
+            "imdb_id": "tt0319061",
+            "screening": [
+                    {"time": "10:00", "hall": "gold-diamond"},
+                    {"time": "15:00", "hall": "brown-diamond"},
+                    {"time": "21:00", "hall": "silver-diamond"}
+                        ]
+        },
+        {
+            "title": "The Triplets of Belleville",
+            "imdb_id": "tt0286244",
+            "screening": [
+                    {"time": "10:00", "hall": "brown-diamond"},
+                    {"time": "12:30", "hall": "gold-diamond"},
+                    {"time": "18:00", "hall": "silver-diamond"}
+                        ]
+        },
+        {
+            "title": "Charlie and the Chocolate Factory",
+            "imdb_id": "tt0367594",
+            "screening": [
+
+                    {"time": "15:00", "hall": "silver-diamond"},
+                    {"time": "18:00", "hall": "gold-diamond"},
+                    {"time": "21:00", "hall": "brown-diamond"}
                         ]
         }
                 ]
@@ -91,11 +287,54 @@
     "day": "saturday",
     "movies": [
         {
-            "title": "Pulp Fiction",
-            "imdb_id": "tt0110912",
+            "title": "Kill Bill: Vol. 2",
+            "imdb_id": "tt0378194",
             "screening": [
-                    {"time": "10:10", "hall": "gold-diamond"},
-                    {"time": "12:30", "hall": "gold-diamond"}
+                    {"time": "15:00", "hall": "silver-diamond"},
+                    {"time": "18:00", "hall": "gold-diamond"},
+                    {"time": "21:00", "hall": "brown-diamond"}
+                        ]
+        },
+        {
+            "title": "Corpse Bride",
+            "imdb_id": "tt0121164",
+            "screening": [
+                    {"time": "10:00", "hall": "brown-diamond"},
+                    {"time": "12:30", "hall": "gold-diamond"},
+                    {"time": "18:00", "hall": "silver-diamond"}
+                        ]
+        },
+        {
+            "title": "The Curious Case of Benjamin Button",
+            "imdb_id": "tt0421715",
+            "screening": [
+                    {"time": "12:30", "hall": "silver-diamond"},
+                    {"time": "21:00", "hall": "gold-diamond"}
+                        ]
+        },
+        {
+            "title": "Pride & Prejudice",
+            "imdb_id": "tt0414387",
+            "screening": [
+                    {"time": "10:00", "hall": "gold-diamond"},
+                    {"time": "15:00", "hall": "brown-diamond"},
+                    {"time": "21:00", "hall": "silver-diamond"}
+                        ]
+        },
+        {
+            "title": "Match Point",
+            "imdb_id": "tt0416320",
+            "screening": [
+                {"time": "10:00", "hall": "silver-diamond"},
+                {"time": "18:00", "hall": "brown-diamond"}
+                        ]
+        },
+        {
+            "title": "Fantastic Mr. Fox",
+            "imdb_id": "tt0432283",
+            "screening": [
+                    {"time": "12:30", "hall": "brown-diamond"},
+                    {"time": "15:00", "hall": "gold-diamond"}
                         ]
         }
                 ]
@@ -104,11 +343,54 @@
     "day": "sunday",
     "movies": [
         {
-            "title": "Pulp Fiction",
-            "imdb_id": "tt0110912",
+            "title": "Sweeney Todd: The Demon Barber of Fleet Street",
+            "imdb_id": "tt0408236",
             "screening": [
-                    {"time": "10:10", "hall": "gold-diamond"},
-                    {"time": "12:30", "hall": "gold-diamond"}
+                    {"time": "15:00", "hall": "silver-diamond"},
+                    {"time": "18:00", "hall": "gold-diamond"},
+                    {"time": "21:00", "hall": "brown-diamond"}
+                        ]
+        },
+        {
+            "title": "Inglourious Basterds",
+            "imdb_id": "tt0361748",
+            "screening": [
+                    {"time": "10:00", "hall": "gold-diamond"},
+                    {"time": "15:00", "hall": "brown-diamond"},
+                    {"time": "21:00", "hall": "silver-diamond"}
+                        ]
+        },
+        {
+            "title": "Death at a Funeral",
+            "imdb_id": "tt0795368",
+            "screening": [
+                    {"time": "12:30", "hall": "silver-diamond"},
+                    {"time": "21:00", "hall": "gold-diamond"}
+                        ]
+        },
+        {
+            "title": "The Proposal",
+            "imdb_id": "tt1041829",
+            "screening": [
+                    {"time": "10:00", "hall": "brown-diamond"},
+                    {"time": "12:30", "hall": "gold-diamond"},
+                    {"time": "18:00", "hall": "silver-diamond"}
+                        ]
+        },
+        {
+            "title": "Whatever Works",
+            "imdb_id": "tt1178663",
+            "screening": [
+                    {"time": "12:30", "hall": "brown-diamond"},
+                    {"time": "15:00", "hall": "gold-diamond"}
+                        ]
+        },
+        {
+            "title": "The Men Who Stare at Goats",
+            "imdb_id": "tt1234548",
+            "screening": [
+                    {"time": "10:00", "hall": "silver-diamond"},
+                    {"time": "18:00", "hall": "brown-diamond"}
                         ]
         }
                 ]

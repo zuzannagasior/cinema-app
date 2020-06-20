@@ -18,7 +18,7 @@ const CinemaHall = () => {
   const [hallBefore, setHallBefore] = useState({rows: [], screeningId: null});
   const [rows, setRows] = useState([]);
 
-  const { chosenMovie, loading, chosenSeats, chosenDay, modalIsOpen } = state;
+  const { chosenMovie, loading, chosenSeats, chosenDay } = state;
   const { title, hall, time } = chosenMovie;
 
   const history = useHistory();
@@ -117,7 +117,7 @@ const CinemaHall = () => {
 
     const setCinemaSeats = (data = rows) => {
       console.log(data, 'data');
-      const rowsToSet = data.rows.map((row, index) => {
+      const rowsToSet = data.rows.reverse().map((row, index) => {
         const seats = row.map((seat, index2) => {
           return <SeatItem key={index2} seat={seat}/>
         });
@@ -185,11 +185,11 @@ const CinemaHall = () => {
             {rows}
           </div>}
           {chosenSeats.length > 0 && <Summary />}
-          <div css={css`transform: translateX(-25%);`}>
+          <div css={css`transform: translateX(-25%); margin-top: 16px;`}>
             <Link to="/" onClick={handleReturnClick}>
                 <CustomButton className="secondary">Return</CustomButton>
             </Link>
-            <CustomButton onClick={handleBookClick}>Book</CustomButton>
+            <CustomButton onClick={handleBookClick} disabled={chosenSeats.length === 0}>Book</CustomButton>
           </div>
       </HallConteiner>
     );

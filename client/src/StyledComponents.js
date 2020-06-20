@@ -1,8 +1,24 @@
 /** @jsx jsx */
+import { keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
 import emptyChair from './assets/emptychair.png';
 import taken from './assets/taken2.png';
 import chosen from './assets/yourchair.png';
+
+
+// Keyframes
+
+const moveFromRight = keyframes`
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+`;
+
 
 // Main
 
@@ -192,6 +208,10 @@ export const CustomButton = styled.button`
         outline: none;
         background-color: #3797a4;
     }
+    &:disabled {
+        background-color: transparent;
+        cursor: default;
+    }
     &.secondary {
         border: none;
         font-weight: 300;
@@ -224,10 +244,18 @@ export const CustomInput = styled.input`
 
 // table
 
+export const SummaryBox = styled.div`
+    animation: ${moveFromRight} 0.5s;
+    margin-bottom: 32px; 
+    width: 600px;
+`;
+
+
 export const Th = styled.th`
     padding-bottom: 16px;
 `;
 
 export const Td = styled.td`
     padding-bottom: 16px;
+    animation: ${moveFromRight} 0.5s;
 `;

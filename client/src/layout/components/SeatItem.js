@@ -10,18 +10,20 @@ const SeatItem = ({ seat }) => {
     const [isChosen, setSeatChosen] = useState(false);
 
     const handleSeatClick = (seat) => {
-        setSeatChosen(!isChosen);
+        if (!seat.isTaken) {
+            setSeatChosen(!isChosen);
 
-        const action = isChosen ? ACTIONS.DELETE_SEAT : ACTIONS.ADD_SEAT;
-        const payload = isChosen ? seat : 
-            {   row: seat.row, 
-                seat: seat.seat,
-                ticketType: "adult", 
-                price: ticketPrices.get("adult")};
-
-        dispatch({ 
-          type: action, 
-          payload: payload });
+            const action = isChosen ? ACTIONS.DELETE_SEAT : ACTIONS.ADD_SEAT;
+            const payload = isChosen ? seat : 
+                {   row: seat.row, 
+                    seat: seat.seat,
+                    ticketType: "adult", 
+                    price: ticketPrices.get("adult")};
+    
+            dispatch({ 
+              type: action, 
+              payload: payload });
+        }
     };
 
     return <Seat className={(seat.isTaken && "taken") || (isChosen && "chosen")} onClick={() => handleSeatClick(seat)}  />
