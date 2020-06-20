@@ -1,21 +1,21 @@
 /** @jsx jsx */
-import { css, jsx } from '@emotion/core';
-import axios from 'axios';
-import { HallConteiner, CustomButton } from '../../StyledComponents';
-import Summary from '../components/Summary.js';
-import SeatItem from '../components/SeatItem.js';
-import UserModal from '../components/UserModal.js';
-import { Link, Redirect} from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
-import {ReduxStoreContext, ACTIONS} from '../../Reducer.js'
-import Loading from '../components/Loading';
-import { hallNames } from '../../config/HallNames';
+import { css, jsx } from "@emotion/core";
+import axios from "axios";
+import { HallConteiner, CustomButton } from "../../StyledComponents";
+import Summary from "../components/Summary.js";
+import SeatItem from "../components/SeatItem.js";
+import UserModal from "../components/UserModal.js";
+import { Link, Redirect } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { ReduxStoreContext, ACTIONS } from "../../Reducer.js";
+import Loading from "../components/Loading";
+import { hallNames } from "../../config/HallNames";
 import { useHistory } from "react-router-dom";
 
 const CinemaHall = () => {
-  const {state, dispatch} = useContext(ReduxStoreContext);
+  const { state, dispatch } = useContext(ReduxStoreContext);
 
-  const [hallBefore, setHallBefore] = useState({rows: [], screeningId: null});
+  const [hallBefore, setHallBefore] = useState({ rows: [], screeningId: null });
   const [rows, setRows] = useState([]);
 
   const { chosenMovie, loading, chosenSeats, chosenDay } = state;
@@ -24,149 +24,160 @@ const CinemaHall = () => {
   const history = useHistory();
 
   const handleReturnClick = () => {
-    dispatch({ 
-      type: ACTIONS.CLEAR_CHOSEN_SEATS});
+    dispatch({
+      type: ACTIONS.CLEAR_CHOSEN_SEATS,
+    });
   };
 
   const save = (userData) => {
-
-    dispatch({ 
-      type: ACTIONS.TOGGLE_LOADING, 
-      payload: true });
+    dispatch({
+      type: ACTIONS.TOGGLE_LOADING,
+      payload: true,
+    });
 
     const { email, name } = userData;
 
-     // create new document for screening (when first ticket is booked) or update existing screening data
-     const rowTakenSeats = hallBefore.rows.map(row => {
-          return row.map(seat => {
-                    const changeSeat = chosenSeats.filter(s => s.row === seat.row && s.seat === seat.seat).length > 0;
-                    if (changeSeat) {
-                      const newSeat = {...seat, isTaken: true};
-                      console.log(newSeat, 'newSeat');
-                      return newSeat;
-                    } else {
-                      return seat;
-                    }
-                  });
-     });
+    // create new document for screening (when first ticket is booked) or update existing screening data
+    const rowTakenSeats = hallBefore.rows.map((row) => {
+      return row.map((seat) => {
+        const changeSeat =
+          chosenSeats.filter((s) => s.row === seat.row && s.seat === seat.seat)
+            .length > 0;
+        if (changeSeat) {
+          const newSeat = { ...seat, isTaken: true };
+          return newSeat;
+        } else {
+          return seat;
+        }
+      });
+    });
 
-     //console.log(rowTakenSeats, 'rowTakenSeats');
-
-     let params;
-     if (hallBefore.screeningId) {
+    let params;
+    if (hallBefore.screeningId) {
       params = {
         rows: rowTakenSeats,
-        screeningId: hallBefore.screeningId
-      }
-     } else {
+        screeningId: hallBefore.screeningId,
+      };
+    } else {
       params = {
         title: title,
         date: `${chosenDay.date.getFullYear()}-${chosenDay.date.getMonth()}-${chosenDay.date.getDate()}`,
         time: time,
         hall: hall,
-        rows: rowTakenSeats
-       };
-     }
-     
-      // console.log(params, 'params');
+        rows: rowTakenSeats,
+      };
+    }
 
-      axios.post(`/screenings`, params)
-      .then(response => {
-        console.log(response, 'response post screenings');
-        console.log(chosenSeats, 'chosenSeats');
+    axios
+      .post(`/screenings`, params)
+      .then((response) => {
         const newBooking = {
           screeningId: response.data._id,
           name: name,
           email: email,
-          tickets: chosenSeats
+          tickets: chosenSeats,
         };
 
-        axios.post(`/bookings`, newBooking)
-        .then(response => {
-          console.log(response, 'response post booking');
-          dispatch({ 
-            type: ACTIONS.TOGGLE_LOADING, 
-            payload: false });
-          dispatch({ 
-              type: ACTIONS.SET_MODAL_IS_OPEN, 
-              payload: false });
-          dispatch({ 
-              type: ACTIONS.CLEAR_CHOSEN_SEATS});
-          history.push("/");
-        })
-        .catch(function(error) {
+        axios
+          .post(`/bookings`, newBooking)
+          .then((response) => {
+            dispatch({
+              type: ACTIONS.TOGGLE_LOADING,
+              payload: false,
+            });
+            dispatch({
+              type: ACTIONS.SET_MODAL_IS_OPEN,
+              payload: false,
+            });
+            dispatch({
+              type: ACTIONS.CLEAR_CHOSEN_SEATS,
+            });
+            history.push("/");
+          })
+          .catch(function (error) {
             console.log(error);
-        });
-
+          });
       })
-      .catch(function(error) {
-          console.log(error);
+      .catch(function (error) {
+        console.log(error);
       });
   };
 
   const handleBookClick = () => {
-    console.log(state, 'state');
-    dispatch({ 
+    dispatch({
       type: ACTIONS.SET_MODAL_IS_OPEN,
-      payload: true});
+      payload: true,
+    });
   };
 
   useEffect(() => {
-
-    document.title = `${title} | ${hallNames.get(hall)} | `.concat("CINEMA with my favourite movies")
+    document.title = `${title} | ${hallNames.get(hall)} | `.concat(
+      "CINEMA with my favourite movies"
+    );
 
     const setCinemaSeats = (data = rows) => {
-      console.log(data, 'data');
       const rowsToSet = data.rows.reverse().map((row, index) => {
         const seats = row.map((seat, index2) => {
-          return <SeatItem key={index2} seat={seat}/>
+          return <SeatItem key={index2} seat={seat} />;
         });
-        return <div css={css`display: flex; padding-top: 16px;`} key={index}>{seats}</div>
+        return (
+          <div
+            css={css`
+              display: flex;
+              padding-top: 16px;
+            `}
+            key={index}
+          >
+            {seats}
+          </div>
+        );
       });
-  
-      console.log(rowsToSet, 'rowsToSet');
+
       setRows(rowsToSet);
     };
 
-    dispatch({ 
-      type: ACTIONS.TOGGLE_LOADING, 
-      payload: true });
-      
-      const date = `${chosenDay.date.getFullYear()}-${chosenDay.date.getMonth()}-${chosenDay.date.getDate()}`;
+    dispatch({
+      type: ACTIONS.TOGGLE_LOADING,
+      payload: true,
+    });
 
-      axios.get(`/screenings/${date}/${title}/${time}`)
-      .then(response => {
+    const date = `${chosenDay.date.getFullYear()}-${chosenDay.date.getMonth()}-${chosenDay.date.getDate()}`;
 
+    axios
+      .get(`/screenings/${date}/${title}/${time}`)
+      .then((response) => {
         if (response.data) {
-          setHallBefore({rows: response.data.rows, screeningId: response.data._id});
+          setHallBefore({
+            rows: response.data.rows,
+            screeningId: response.data._id,
+          });
           setCinemaSeats(response.data);
 
-          dispatch({ 
-            type: ACTIONS.TOGGLE_LOADING, 
-            payload: false });
-        } else {
-
-        // get default hall
-        axios.get(`/halls/${hall}`)
-          .then(response => {
-
-            setHallBefore({rows: response.data.rows, screeningId: null});
-            setCinemaSeats(response.data);
-      
-            dispatch({ 
-              type: ACTIONS.TOGGLE_LOADING, 
-              payload: false });
-          })
-          .catch(function(error) {
-              console.log(error);
+          dispatch({
+            type: ACTIONS.TOGGLE_LOADING,
+            payload: false,
           });
-        }
-      
-      })
-      .catch(function(error) {
-          console.log(error);
-      });
+        } else {
+          // get default hall
+          axios
+            .get(`/halls/${hall}`)
+            .then((response) => {
+              setHallBefore({ rows: response.data.rows, screeningId: null });
+              setCinemaSeats(response.data);
 
+              dispatch({
+                type: ACTIONS.TOGGLE_LOADING,
+                payload: false,
+              });
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }, []);
 
   if (Object.keys(state.chosenMovie).length === 0) {
@@ -174,26 +185,43 @@ const CinemaHall = () => {
   } else {
     return (
       <HallConteiner>
-          <UserModal save={save}/>
-          <h1>{title}</h1>
-          <h2>{hallNames.get(hall)}</h2>
-          {loading 
-            ? 
+        <UserModal save={save} />
+        <h1>{title}</h1>
+        <h2>{hallNames.get(hall)}</h2>
+        {loading ? (
           <Loading />
-            : 
-          <div css={css`padding-top: 16px; display: flex; flex-direction: column; margin-bottom: 32px;`}>
+        ) : (
+          <div
+            css={css`
+              padding-top: 16px;
+              display: flex;
+              flex-direction: column;
+              margin-bottom: 32px;
+            `}
+          >
             {rows}
-          </div>}
-          {chosenSeats.length > 0 && <Summary />}
-          <div css={css`transform: translateX(-25%); margin-top: 16px;`}>
-            <Link to="/" onClick={handleReturnClick}>
-                <CustomButton className="secondary">Return</CustomButton>
-            </Link>
-            <CustomButton onClick={handleBookClick} disabled={chosenSeats.length === 0}>Book</CustomButton>
           </div>
+        )}
+        {chosenSeats.length > 0 && <Summary />}
+        <div
+          css={css`
+            transform: translateX(-25%);
+            margin-top: 16px;
+          `}
+        >
+          <Link to="/" onClick={handleReturnClick}>
+            <CustomButton className="secondary">Return</CustomButton>
+          </Link>
+          <CustomButton
+            onClick={handleBookClick}
+            disabled={chosenSeats.length === 0}
+          >
+            Book
+          </CustomButton>
+        </div>
       </HallConteiner>
     );
   }
-}
+};
 
 export default CinemaHall;

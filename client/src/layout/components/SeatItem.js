@@ -1,32 +1,41 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
-import { useState, useContext } from 'react';
-import { Seat } from '../../StyledComponents';
-import {ReduxStoreContext, ACTIONS} from '../../Reducer.js';
-import { ticketPrices } from '../../config/TicketPrices';
+import { jsx } from "@emotion/core";
+import { useState, useContext } from "react";
+import { Seat } from "../../StyledComponents";
+import { ReduxStoreContext, ACTIONS } from "../../Reducer.js";
+import { ticketPrices } from "../../config/TicketPrices";
 
 const SeatItem = ({ seat }) => {
-    const {dispatch} = useContext(ReduxStoreContext);
-    const [isChosen, setSeatChosen] = useState(false);
+  const { dispatch } = useContext(ReduxStoreContext);
+  const [isChosen, setSeatChosen] = useState(false);
 
-    const handleSeatClick = (seat) => {
-        if (!seat.isTaken) {
-            setSeatChosen(!isChosen);
+  const handleSeatClick = (seat) => {
+    if (!seat.isTaken) {
+      setSeatChosen(!isChosen);
 
-            const action = isChosen ? ACTIONS.DELETE_SEAT : ACTIONS.ADD_SEAT;
-            const payload = isChosen ? seat : 
-                {   row: seat.row, 
-                    seat: seat.seat,
-                    ticketType: "adult", 
-                    price: ticketPrices.get("adult")};
-    
-            dispatch({ 
-              type: action, 
-              payload: payload });
-        }
-    };
+      const action = isChosen ? ACTIONS.DELETE_SEAT : ACTIONS.ADD_SEAT;
+      const payload = isChosen
+        ? seat
+        : {
+            row: seat.row,
+            seat: seat.seat,
+            ticketType: "adult",
+            price: ticketPrices.get("adult"),
+          };
 
-    return <Seat className={(seat.isTaken && "taken") || (isChosen && "chosen")} onClick={() => handleSeatClick(seat)}  />
+      dispatch({
+        type: action,
+        payload: payload,
+      });
+    }
+  };
+
+  return (
+    <Seat
+      className={(seat.isTaken && "taken") || (isChosen && "chosen")}
+      onClick={() => handleSeatClick(seat)}
+    />
+  );
 };
- 
+
 export default SeatItem;

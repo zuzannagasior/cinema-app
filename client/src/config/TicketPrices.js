@@ -1,4 +1,4 @@
 export const ticketPrices = new Map([
-    ['adult', 15],
-    ['children', 8],
+  ["adult", 15],
+  ["children", 8],
 ]);

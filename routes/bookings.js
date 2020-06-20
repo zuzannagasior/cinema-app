@@ -1,22 +1,20 @@
-const router = require('express').Router();
-let Booking = require('../models/booking.model');
+const router = require("express").Router();
+let Booking = require("../models/booking.model");
 
-router.route('/').post((req, res) => {
+router.route("/").post((req, res) => {
+  const newBooking = new Booking({
+    screeningId: req.body.screeningId,
+    name: req.body.name,
+    email: req.body.email,
+    tickets: req.body.tickets,
+  });
 
-    console.log(req.body.tickets, 'req.body.tickets');
-    const newBooking = new Booking({
-        screeningId: req.body.screeningId,
-        name: req.body.name,
-        email: req.body.email,
-        tickets: req.body.tickets
-    });
-
-    newBooking.save()
+  newBooking
+    .save()
     .then((response) => {
-        res.json(response);
+      res.json(response);
     })
-    .catch(err => res.status(400).json('Error: ' + err));
-    
+    .catch((err) => res.status(400).json("Error: " + err));
 });
 
 module.exports = router;
