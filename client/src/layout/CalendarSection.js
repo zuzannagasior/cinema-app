@@ -45,7 +45,7 @@ const CalendarSection = () => {
           case 1:
             let tomorrow = new Date();
             tomorrow.setDate(new Date().getDate() + 1);
-            dayOfWeek = tomorrow.getDay() === 0 ? 6 : today.getDay() - 1;
+            dayOfWeek = tomorrow.getDay() === 0 ? 6 : tomorrow.getDay() - 1;
             buttons.push({
               text: "TOMMOROW",
               day: days[dayOfWeek],
